@@ -1,0 +1,8 @@
+<dose-amigos-toolbar [title]="title"></dose-amigos-toolbar>
+
+<ion-content padding class="feed">
+
+    <dose-event-card *ngFor="let doseEvent of doseEvents"
+                     [doseEvent]="doseEvent"></dose-event-card>
+
+</ion-content>
