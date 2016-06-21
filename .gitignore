@@ -3,3 +3,6 @@ www/build/
 platforms/
 plugins/
 .DS_Store
+
+coverage/
+.idea/

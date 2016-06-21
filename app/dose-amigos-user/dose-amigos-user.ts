@@ -1,0 +1,10 @@
+/**
+ * Domain object for a person in the app.
+ */
+export class DoseAmigosUser {
+
+    id: number;
+    name: string;
+    email: string;
+
+}
