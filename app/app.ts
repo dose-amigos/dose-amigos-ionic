@@ -5,6 +5,8 @@ import {FeedPage} from "./pages/feed/feed";
 import {DoseEventService} from "./dose-event-service/dose-event-service";
 import {PAGE_LIST} from "./pages/page-list";
 import {Page} from "./pages/page";
+import {AuthUserService} from "./auth-user-service/auth-user.service";
+import {DoseTimeService} from "./dose-time-service/dose-time.service";
 
 /**
  * DoseAmigosApp component for initializing app and routes.
@@ -13,7 +15,9 @@ import {Page} from "./pages/page";
     {
         templateUrl: "build/app.html",
         providers: [
-            DoseEventService
+            AuthUserService,
+            DoseEventService,
+            DoseTimeService
         ]
     }
 )
@@ -49,4 +53,10 @@ export class DoseAmigosApp {
 
 }
 
-ionicBootstrap(DoseAmigosApp);
+ionicBootstrap(
+    DoseAmigosApp,
+    [], /* custom providers */
+    {
+        mode: "md"
+    }
+);

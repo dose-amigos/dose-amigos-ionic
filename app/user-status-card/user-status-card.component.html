@@ -1,0 +1,29 @@
+<ion-card *ngIf="user"
+          [navPush]="onClickPage"
+          class="user-status-card">
+
+    <ion-item>
+
+        <ion-avatar item-left>
+            <ion-icon name="person"></ion-icon>
+        </ion-avatar>
+
+        <h2>{{user.name}}</h2>
+
+    </ion-item>
+
+    <ion-grid>
+        <ion-row wrap>
+
+            <ion-col>
+                <last-dose [doseTime]="user.lastTimeDoseTaken"></last-dose>
+            </ion-col>
+
+            <ion-col>
+                <next-dose [doseTime]="user.nextTimeDoseScheduled"></next-dose>
+            </ion-col>
+
+        </ion-row>
+    </ion-grid>
+
+</ion-card>

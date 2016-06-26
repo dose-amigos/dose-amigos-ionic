@@ -25,11 +25,21 @@
 // Both iOS and MD colors can be further customized if colors
 // are different per mode.
 
+/*
+ * Material Color Swatches:
+ * https://material.google.com/style/color.html
+ *
+ * Also see Angular Material notes on color:
+ * https://material.angularjs.org/latest/Theming/03_configuring_a_theme
+ *
+ */
 $colors: (
-  primary:    #387ef5,
-  secondary:  #32db64,
-  danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222,
-  favorite:   #69BB7B
+        primary:    #2196F3, /* Blue 500 */
+        secondary:  #FF5722, /* Deep Orange 500 */
+        success:    #4CAF50, /* Green 500 */
+        backdrop:   #EEEEEE, /* Grey 200 */
+        danger:     #F44336, /* Red 500 */
+        light:      #FFFFFF, /* White */
+        dark:       #000000, /* Black */
+        favorite:   #FFFF00  /* Yellow A200 */
 );

@@ -3,7 +3,9 @@ import {FeedPage} from "./feed";
 import {DoseEvent} from "../../dose-event/dose-event";
 import {DOSE_EVENTS} from "../../dose-event-service/dose-event.mocks";
 import {DoseEventService} from "../../dose-event-service/dose-event-service";
-import {NavController} from "ionic-angular/index";
+import {AuthUserService} from "../../auth-user-service/auth-user.service";
+import {CURRENT_AUTH_USER} from "../../auth-user-service/auth-user.mocks";
+import {AuthUser} from "../../auth-user/auth-user";
 
 class MockDoseEventService {
 
@@ -15,7 +17,13 @@ class MockDoseEventService {
 
 }
 
-class MockNavController {}
+class MockAuthUserService {
+
+    public get(): AuthUser {
+        return CURRENT_AUTH_USER;
+    }
+
+}
 
 /**
  * Tests for FeedPage component.
@@ -24,12 +32,12 @@ describe("FeedPage", () => {
 
     it("should get DoseEvents from the service", () => {
 
-        const mockNavController: NavController = new MockNavController() as NavController;
         const mockDoseEventService: DoseEventService = new MockDoseEventService() as DoseEventService;
+        const mockAuthUserService: AuthUserService = new MockAuthUserService() as AuthUserService;
 
         const feedPage: FeedPage = new FeedPage(
-            mockNavController,
-            mockDoseEventService
+            mockDoseEventService,
+            mockAuthUserService
         );
 
         return feedPage.ngOnInit().then(
@@ -47,12 +55,12 @@ describe("FeedPage", () => {
 
     it("should have title set", () => {
 
-        const mockNavController: NavController = new MockNavController() as NavController;
         const mockDoseEventService: DoseEventService = new MockDoseEventService() as DoseEventService;
+        const mockAuthUserService: AuthUserService = new MockAuthUserService() as AuthUserService;
 
         const feedPage: FeedPage = new FeedPage(
-            mockNavController,
-            mockDoseEventService
+            mockDoseEventService,
+            mockAuthUserService
         );
 
         return feedPage.ngOnInit().then(
