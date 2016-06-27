@@ -1,0 +1,24 @@
+<span class="next-dose"
+      [class.overdue]="isOverdue()">
+
+    <span [ngSwitch]="isOverdue()">
+
+        <ion-icon name="warning"
+                  *ngSwitchCase="true"></ion-icon>
+
+        <ion-icon name="time"
+                  *ngSwitchDefault></ion-icon>
+
+    </span>
+
+    <span>
+        Next Dose:
+        {{doseTime | date:'shortDate'}}
+        {{doseTime | date:'shortTime'}}
+    </span>
+
+    <span *ngIf="isOverdue()">
+        - Overdue
+    </span>
+
+</span>

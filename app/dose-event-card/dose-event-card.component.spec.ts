@@ -20,7 +20,8 @@ describe("DoseEventCardComponent", () => {
             componentFixture.componentInstance.doseEvent.user = new DoseAmigosUser();
             componentFixture.componentInstance.doseEvent.user.id = 100;
             componentFixture.componentInstance.doseEvent.user.name = "John Doe";
-            componentFixture.componentInstance.doseEvent.user.email = "jdoe@example.org";
+            componentFixture.componentInstance.doseEvent.user.lastTimeDoseTaken = new Date();
+            componentFixture.componentInstance.doseEvent.user.nextTimeDoseScheduled = new Date();
 
             componentFixture.detectChanges();
             expect(

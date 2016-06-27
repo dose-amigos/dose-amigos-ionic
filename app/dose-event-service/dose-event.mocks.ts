@@ -1,34 +1,39 @@
 import {DoseEvent} from "../dose-event/dose-event";
 
+const now: Date = new Date();
+const fifteenMinAgo: Date = new Date(now.getTime() - 15 * 60000);
+const fortyFiveMinAgo: Date = new Date(now.getTime() - 45 * 60000);
+const fifteenMinFromNow: Date = new Date(now.getTime() + 15 * 60000);
+
 export var DOSE_EVENTS: Array<DoseEvent> = [
     {
         id: 3,
-        time: new Date(),
+        time: now,
         user: {
             id: 300,
-            name: "John Doe",
-            email: "jdoe@example.org",
-
+            name: "Barney Rubble",
+            lastTimeDoseTaken: now,
+            nextTimeDoseScheduled: fifteenMinFromNow
         }
     },
     {
         id: 2,
-        time: new Date(),
+        time: fifteenMinAgo,
         user: {
             id: 200,
-            name: "Jane Smith",
-            email: "jsmith@example.org",
-
+            name: "Wilma Flintstone",
+            lastTimeDoseTaken: fifteenMinAgo,
+            nextTimeDoseScheduled: now
         }
     },
     {
         id: 1,
-        time: new Date(),
+        time: fortyFiveMinAgo,
         user: {
             id: 100,
-            name: "Some Guy",
-            email: "sguy@example.org",
-
+            name: "Betty Rubble",
+            lastTimeDoseTaken: fortyFiveMinAgo,
+            nextTimeDoseScheduled: fifteenMinAgo
         }
     }
 ];

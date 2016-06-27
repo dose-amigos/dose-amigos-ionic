@@ -2,6 +2,9 @@
 
 <ion-content padding class="feed">
 
+    <user-status-card [user]="authUser.userInfo"
+                      [onClickPage]="userStatusClickPage"></user-status-card>
+
     <dose-event-card *ngFor="let doseEvent of doseEvents"
                      [doseEvent]="doseEvent"></dose-event-card>
 

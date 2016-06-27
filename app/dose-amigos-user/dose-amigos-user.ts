@@ -5,6 +5,7 @@ export class DoseAmigosUser {
 
     id: number;
     name: string;
-    email: string;
+    lastTimeDoseTaken: Date;
+    nextTimeDoseScheduled: Date;
 
 }

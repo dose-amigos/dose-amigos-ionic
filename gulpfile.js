@@ -63,10 +63,29 @@ gulp.task('build', ['clean'], function(done){
   );
 });
 
+/**
+ * Added to pass additional custom scripts.
+ * Specifically needed for Intl polyfill https://github.com/angular/angular/issues/3333.
+ * @returns a stream of Vinyl files that can be piped.
+ */
+function scripts() {
+    return copyScripts(
+        {
+            src: [
+                'node_modules/es6-shim/es6-shim.min.js',
+                'node_modules/zone.js/dist/zone.js',
+                'node_modules/reflect-metadata/Reflect.js',
+                'node_modules/intl/dist/Intl.min.js',
+                'node_modules/intl/locale-data/jsonp/en.js'
+            ]
+        }
+    );
+}
+
 gulp.task('sass', buildSass);
 gulp.task('html', copyHTML);
 gulp.task('fonts', copyFonts);
-gulp.task('scripts', copyScripts);
+gulp.task('scripts', scripts);
 gulp.task('clean', function(){
   return del('www/build');
 });
