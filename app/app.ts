@@ -7,6 +7,7 @@ import {PAGE_LIST} from "./pages/page-list";
 import {Page} from "./pages/page";
 import {AuthUserService} from "./auth-user-service/auth-user.service";
 import {DoseTimeService} from "./dose-time-service/dose-time.service";
+import {DoseAmigosUserService} from "./dose-amigos-user-service/dose-amigos-user.service";
 
 /**
  * DoseAmigosApp component for initializing app and routes.
@@ -17,7 +18,8 @@ import {DoseTimeService} from "./dose-time-service/dose-time.service";
         providers: [
             AuthUserService,
             DoseEventService,
-            DoseTimeService
+            DoseTimeService,
+            DoseAmigosUserService
         ]
     }
 )
