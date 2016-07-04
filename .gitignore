@@ -6,3 +6,4 @@ plugins/
 
 coverage/
 .idea/
+*.iml
