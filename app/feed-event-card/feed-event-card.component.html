@@ -1,4 +1,4 @@
-<ion-card *ngIf="doseEvent">
+<ion-card *ngIf="feedEvent">
 
     <ion-item>
 
@@ -6,18 +6,18 @@
             <ion-icon name="person"></ion-icon>
         </ion-avatar>
 
-        <h2>{{doseEvent.user.name}}</h2>
+        <h2>{{feedEvent.user.name}}</h2>
 
         <ion-note item-right>
-            <p>{{doseEvent.time | date:'shortTime'}}</p>
-            <p>{{doseEvent.time | date:'shortDate'}}</p>
+            <p>{{feedEvent.actionDateTime | date:'shortTime'}}</p>
+            <p>{{feedEvent.actionDateTime | date:'shortDate'}}</p>
         </ion-note>
 
     </ion-item>
 
     <ion-card-content>
         <p>
-            {{doseEvent.user.name}} has taken all their medication for the day.
+            {{feedEvent.user.name}} {{feedEvent.action}}
         </p>
     </ion-card-content>
 

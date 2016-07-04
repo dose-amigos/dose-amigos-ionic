@@ -1,12 +1,12 @@
 import {DoseAmigosUser} from "../dose-amigos-user/dose-amigos-user";
 
 /**
- * Domain object representing a Dose Event by a User.
+ * Domain object representing an action by a User.
  */
-export class DoseEvent {
+export class FeedEvent {
 
     id: number;
     user: DoseAmigosUser;
-    time: Date;
-
+    actionDateTime: Date;
+    action: String;
 }

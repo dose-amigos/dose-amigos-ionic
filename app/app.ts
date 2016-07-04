@@ -2,7 +2,7 @@ import {Component, ViewChild} from "@angular/core";
 import {Platform, ionicBootstrap, Nav} from "ionic-angular";
 import {StatusBar} from "ionic-native";
 import {FeedPage} from "./pages/feed/feed";
-import {DoseEventService} from "./dose-event-service/dose-event-service";
+import {FeedEventService} from "./feed-event-service/feed-event-service";
 import {PAGE_LIST} from "./pages/page-list";
 import {Page} from "./pages/page";
 import {AuthUserService} from "./auth-user-service/auth-user.service";
@@ -17,7 +17,7 @@ import {DoseAmigosUserService} from "./dose-amigos-user-service/dose-amigos-user
         templateUrl: "build/app.html",
         providers: [
             AuthUserService,
-            DoseEventService,
+            FeedEventService,
             DoseTimeService,
             DoseAmigosUserService
         ]
