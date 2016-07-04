@@ -1,17 +1,17 @@
 import {it, describe, expect} from "@angular/core/testing";
 import {FeedPage} from "./feed";
-import {DoseEvent} from "../../dose-event/dose-event";
-import {DOSE_EVENTS} from "../../dose-event-service/dose-event.mocks";
-import {DoseEventService} from "../../dose-event-service/dose-event-service";
+import {FeedEvent} from "../../feed-event/feed-event";
+import {FEED_EVENTS} from "../../feed-event-service/feed-event.mocks";
+import {FeedEventService} from "../../feed-event-service/feed-event-service";
 import {AuthUserService} from "../../auth-user-service/auth-user.service";
 import {CURRENT_AUTH_USER} from "../../auth-user-service/auth-user.mocks";
 import {AuthUser} from "../../auth-user/auth-user";
 
-class MockDoseEventService {
+class MockFeedEventService {
 
-    list(): Promise<Array<DoseEvent>> {
+    list(): Promise<Array<FeedEvent>> {
         return Promise.resolve(
-            DOSE_EVENTS
+            FEED_EVENTS
         );
     }
 
@@ -30,23 +30,23 @@ class MockAuthUserService {
  */
 describe("FeedPage", () => {
 
-    it("should get DoseEvents from the service", () => {
+    it("should get FeedEvents from the service", () => {
 
-        const mockDoseEventService: DoseEventService = new MockDoseEventService() as DoseEventService;
+        const mockFeedEventService: FeedEventService = new MockFeedEventService() as FeedEventService;
         const mockAuthUserService: AuthUserService = new MockAuthUserService() as AuthUserService;
 
         const feedPage: FeedPage = new FeedPage(
-            mockDoseEventService,
+            mockFeedEventService,
             mockAuthUserService
         );
 
         return feedPage.ngOnInit().then(
             () => {
                 expect(
-                    feedPage.doseEvents
+                    feedPage.feedEvents
                 ).toEqual(
-                    DOSE_EVENTS,
-                    "should get DoseEvents from the service"
+                    FEED_EVENTS,
+                    "should get FeedEvents from the service"
                 );
             }
         );
@@ -55,11 +55,11 @@ describe("FeedPage", () => {
 
     it("should have title set", () => {
 
-        const mockDoseEventService: DoseEventService = new MockDoseEventService() as DoseEventService;
+        const mockFeedEventService: FeedEventService = new MockFeedEventService() as FeedEventService;
         const mockAuthUserService: AuthUserService = new MockAuthUserService() as AuthUserService;
 
         const feedPage: FeedPage = new FeedPage(
-            mockDoseEventService,
+            mockFeedEventService,
             mockAuthUserService
         );
 

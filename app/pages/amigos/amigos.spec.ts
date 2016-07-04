@@ -21,10 +21,10 @@ describe("AmigoPage", () => {
 
     it("should get DoseAmigosUsers from the service", () => {
 
-        const mockDoseEventService: DoseAmigosUserService = new MockDoseAmigosUserService() as DoseAmigosUserService;
+        const mockDoseAmigosUserService: DoseAmigosUserService = new MockDoseAmigosUserService() as DoseAmigosUserService;
 
         const amigosPage: AmigosPage = new AmigosPage(
-            mockDoseEventService
+            mockDoseAmigosUserService
         );
 
         return amigosPage.ngOnInit().then(
@@ -33,7 +33,7 @@ describe("AmigoPage", () => {
                     amigosPage.doseAmigosUsers
                 ).toEqual(
                     DOSE_AMIGOS_USERS,
-                    "should get DoseEvents from the service"
+                    "should get DoseAmigosUsers from the service"
                 );
             }
         );
@@ -42,10 +42,10 @@ describe("AmigoPage", () => {
 
     it("should have title set", () => {
 
-        const mockDoseEventService: DoseAmigosUserService = new MockDoseAmigosUserService() as DoseAmigosUserService;
+        const mockDoseAmigosUserService: DoseAmigosUserService = new MockDoseAmigosUserService() as DoseAmigosUserService;
 
         const amigosPage: AmigosPage = new AmigosPage(
-            mockDoseEventService
+            mockDoseAmigosUserService
         );
 
         return amigosPage.ngOnInit().then(

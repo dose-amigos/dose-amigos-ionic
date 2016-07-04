@@ -1,7 +1,7 @@
 import {Component, OnInit, Type} from "@angular/core";
-import {DoseEvent} from "../../dose-event/dose-event";
-import {DoseEventCardComponent} from "../../dose-event-card/dose-event-card.component";
-import {DoseEventService} from "../../dose-event-service/dose-event-service";
+import {FeedEvent} from "../../feed-event/feed-event";
+import {FeedEventCardComponent} from "../../feed-event-card/feed-event-card.component";
+import {FeedEventService} from "../../feed-event-service/feed-event-service";
 import {DoseAmigosToolbar} from "../../dose-amigos-toolbar/dose-amigos-toolbar.component";
 import {AuthUserService} from "../../auth-user-service/auth-user.service";
 import {AuthUser} from "../../auth-user/auth-user";
@@ -15,7 +15,7 @@ import {DosePage} from "../dose/dose";
     {
         templateUrl: "build/pages/feed/feed.html",
         directives: [
-            DoseEventCardComponent,
+            FeedEventCardComponent,
             DoseAmigosToolbar,
             UserStatusCardComponent
         ]
@@ -23,13 +23,13 @@ import {DosePage} from "../dose/dose";
 )
 export class FeedPage implements OnInit {
 
-    public doseEvents: Array<DoseEvent> = [];
+    public feedEvents: Array<FeedEvent> = [];
     public title: string = "News Feed";
     public authUser: AuthUser;
     public userStatusClickPage: Type;
 
     constructor(
-        private doseEventService: DoseEventService,
+        private feedEventService: FeedEventService,
         private authUserService: AuthUserService
     ) {
 
@@ -41,9 +41,9 @@ export class FeedPage implements OnInit {
 
         this.userStatusClickPage = DosePage;
 
-        return this.doseEventService.list().then(
-            doseEvents => {
-                this.doseEvents = doseEvents;
+        return this.feedEventService.list().then(
+            feedEvents => {
+                this.feedEvents = feedEvents;
             }
         );
     }
