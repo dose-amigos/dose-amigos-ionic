@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 import {DoseAmigosToolbar} from "../../dose-amigos-toolbar/dose-amigos-toolbar.component";
 import {NavController} from "ionic-angular";
-
+import {DoseMedication} from "../../dose-medication/dose-medication";
 /*
   Generated class for the MedListPage page.
 
