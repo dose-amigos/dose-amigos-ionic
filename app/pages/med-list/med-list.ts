@@ -13,5 +13,6 @@ import {NavController} from "ionic-angular";
   directives: [DoseAmigosToolbar]
 })
 export class MedListPage {
-  constructor(public nav: NavController) {}
+    public title: string = "My Medications";
+    constructor(public nav: NavController) {}
 }
