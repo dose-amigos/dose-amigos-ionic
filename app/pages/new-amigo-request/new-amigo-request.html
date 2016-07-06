@@ -1,0 +1,46 @@
+<ion-header>
+    <dose-amigos-toolbar [title]="title"></dose-amigos-toolbar>
+</ion-header>
+
+<ion-content padding  class="new-amigo-request">
+
+    <form (ngSubmit)="onSubmit()"
+          #requestForm="ngForm">
+
+        <h3>
+            Enter Amigo's email address.
+        </h3>
+
+        <ion-list>
+
+            <ion-item>
+                <ion-label floating>Amigo's Email</ion-label>
+                <ion-input type="email"
+                           [(ngModel)]="amigoShareRequest.targetUserEmail"
+                           required></ion-input>
+            </ion-item>
+
+            <ion-item>
+
+                <button item-right
+                        secondary
+                        (click)="cancel()">
+                    <ion-icon name="close"></ion-icon>
+                    Cancel
+                </button>
+
+                <button item-right
+                        type="submit"
+                        primary
+                        [disabled]="!requestForm.form.valid">
+                    <ion-icon name="person-add"></ion-icon>
+                    Invite
+                </button>
+
+            </ion-item>
+
+        </ion-list>
+
+    </form>
+
+</ion-content>
