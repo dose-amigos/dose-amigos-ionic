@@ -1,0 +1,21 @@
+<ion-item-sliding *ngIf="doseEvent">
+
+    <ion-item>
+        <ion-avatar item-left>
+            <ion-icon name="checkmark-circle" primary></ion-icon>
+        </ion-avatar>
+        <h2>{{doseEvent.med.name}}</h2>
+        <p>50mg Twice Daily</p>
+        <button clear item-right>More Info</button>
+    </ion-item>
+    <ion-item-options>
+        <button primary>
+            <ion-icon name="Taken"></ion-icon>
+            Taken
+        </button>
+        <button secondary>
+            <ion-icon name="Snooze"></ion-icon>
+            Snooze
+        </button>
+    </ion-item-options>
+</ion-item-sliding>
