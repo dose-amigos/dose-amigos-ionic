@@ -1,4 +1,5 @@
 import {Component} from "@angular/core";
+import {DoseAmigosToolbar} from "../../dose-amigos-toolbar/dose-amigos-toolbar.component";
 import {NavController} from "ionic-angular";
 
 /*
@@ -9,6 +10,7 @@ import {NavController} from "ionic-angular";
 */
 @Component({
   templateUrl: "build/pages/med-list/med-list.html",
+  directives: [DoseAmigosToolbar]
 })
 export class MedListPage {
   constructor(public nav: NavController) {}
