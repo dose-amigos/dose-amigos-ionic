@@ -2,21 +2,27 @@ import {Page} from "./page";
 import {FeedPage} from "./feed/feed";
 import {AmigosPage} from "./amigos/amigos";
 import {DosePage} from "./dose/dose";
+import {AmigoRequestsPage} from "./amigo-requests/amigo-requests";
 
 export var PAGE_LIST: Array<Page> = [
     {
         title: "News Feed",
         component: FeedPage,
-        icon: "md-list-box"
+        icon: "list-box"
     },
     {
         title: "Dose",
         component: DosePage,
-        icon: "md-medkit"
+        icon: "medkit"
     },
     {
         title: "Amigos",
         component: AmigosPage,
-        icon: "md-people"
+        icon: "people"
+    },
+    {
+        title: "Amigo Requests",
+        component: AmigoRequestsPage,
+        icon: "person-add"
     }
 ];
