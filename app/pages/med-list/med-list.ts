@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {Component} from "@angular/core";
+import {NavController} from "ionic-angular";
 
 /*
   Generated class for the MedListPage page.
@@ -8,7 +8,7 @@ import {NavController} from 'ionic-angular';
   Ionic pages and navigation.
 */
 @Component({
-  templateUrl: 'build/pages/med-list/med-list.html',
+  templateUrl: "build/pages/med-list/med-list.html",
 })
 export class MedListPage {
   constructor(public nav: NavController) {}
