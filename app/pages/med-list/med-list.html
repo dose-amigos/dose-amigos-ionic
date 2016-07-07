@@ -1,0 +1,10 @@
+<ion-header>
+    <dose-amigos-toolbar [title]="title"></dose-amigos-toolbar>
+</ion-header>
+
+<ion-content padding class="med-list">
+    <user-status-card *ngFor="let user of doseAmigosUsers"
+                      [user]="user"
+                      [onClickPage]="userStatusClickPage"></user-status-card>
+</ion-content>
+
