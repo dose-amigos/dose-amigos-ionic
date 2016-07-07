@@ -10,6 +10,7 @@ import {DoseTimeService} from "./dose-time-service/dose-time.service";
 import {DoseAmigosUserService} from "./dose-amigos-user-service/dose-amigos-user.service";
 import {DoseEventService} from "./dose-event-service/dose-event.service";
 import {DoseMedicationService} from "./dose-medication-service/dose-medication.service";
+import {AmigoShareRequestService} from "./amigo-share-request-service/amigo-share-request.service";
 
 /**
  * DoseAmigosApp component for initializing app and routes.
@@ -18,6 +19,7 @@ import {DoseMedicationService} from "./dose-medication-service/dose-medication.s
     {
         templateUrl: "build/app.html",
         providers: [
+            AmigoShareRequestService,
             AuthUserService,
             FeedEventService,
             DoseTimeService,

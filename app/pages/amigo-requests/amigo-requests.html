@@ -1,0 +1,10 @@
+<ion-header>
+    <dose-amigos-toolbar [title]="title"></dose-amigos-toolbar>
+</ion-header>
+
+<ion-content padding class="amigo-requests">
+
+    <amigo-share-request-card *ngFor="let amigoShareRequest of amigoShareRequests"
+                              [amigoShareRequest]="amigoShareRequest"></amigo-share-request-card>
+
+</ion-content>
