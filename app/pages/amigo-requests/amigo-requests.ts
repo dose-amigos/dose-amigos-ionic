@@ -3,13 +3,15 @@ import {DoseAmigosToolbar} from "../../dose-amigos-toolbar/dose-amigos-toolbar.c
 import {AmigoShareRequestService} from "../../amigo-share-request-service/amigo-share-request.service";
 import {AmigoShareRequest} from "../../amigo-share-request/amigo-share-request";
 import {AmigoShareRequestCardComponent} from "../../amigo-share-request-card/amigo-share-request-card.component";
+import {AmigoRequestCreateComponent} from "../../amigo-request-create-component/amigo-request-create.component";
 
 @Component(
     {
         templateUrl: "build/pages/amigo-requests/amigo-requests.html",
         directives: [
             AmigoShareRequestCardComponent,
-            DoseAmigosToolbar
+            DoseAmigosToolbar,
+            AmigoRequestCreateComponent
         ]
     }
 )

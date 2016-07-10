@@ -15,3 +15,10 @@
 @import "../next-dose/next-dose";
 @import "../last-dose/last-dose";
 @import "../user-status-card/user-status-card";
+
+/* Global Classes */
+
+/* Make room on bottom of all pages for FABs. */
+ion-page ion-content[padding] scroll-content {
+  padding-bottom: 100px;
+}

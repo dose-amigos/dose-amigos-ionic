@@ -4,6 +4,9 @@ import {AmigosPage} from "./amigos/amigos";
 import {DosePage} from "./dose/dose";
 import {AmigoRequestsPage} from "./amigo-requests/amigo-requests";
 
+/**
+ * List of pages for side navigation.
+ */
 export var PAGE_LIST: Array<Page> = [
     {
         title: "News Feed",

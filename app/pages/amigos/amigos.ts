@@ -4,13 +4,15 @@ import {DoseAmigosUserService} from "../../dose-amigos-user-service/dose-amigos-
 import {DoseAmigosUser} from "../../dose-amigos-user/dose-amigos-user";
 import {UserStatusCardComponent} from "../../user-status-card/user-status-card.component";
 import {FeedPage} from "../feed/feed";
+import {AmigoRequestCreateComponent} from "../../amigo-request-create-component/amigo-request-create.component";
 
 @Component(
     {
         templateUrl: "build/pages/amigos/amigos.html",
         directives: [
             DoseAmigosToolbar,
-            UserStatusCardComponent
+            UserStatusCardComponent,
+            AmigoRequestCreateComponent
         ]
     }
 )
