@@ -1,7 +1,30 @@
 <ion-header>
+
     <dose-amigos-toolbar [title]="title"></dose-amigos-toolbar>
+
+    <ion-toolbar>
+        <ion-buttons left>
+            <button>
+                <ion-icon name="arrow-back"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-title style="text-align:center">8:00 AM</ion-title>
+        <ion-buttons right>
+            <button>
+                <ion-icon name="arrow-forward"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+
 </ion-header>
 
 <ion-content padding class="dose">
-    <div>Dose stuff here.</div>
+
+    <ion-list>
+
+        <dose-event-slider *ngFor="let doseEvent of doseEvents"
+                           [doseEvent]="doseEvent"></dose-event-slider>
+
+    </ion-list>
+
 </ion-content>
