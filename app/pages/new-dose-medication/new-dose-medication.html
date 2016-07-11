@@ -1,0 +1,63 @@
+<ion-header>
+    <dose-amigos-toolbar [title]="title"></dose-amigos-toolbar>
+</ion-header>
+
+<ion-content padding  class="new-dose-medication">
+
+    <form (ngSubmit)="onSubmit()"
+          #requestForm="ngForm">
+
+        <ion-list>
+
+            <ion-item>
+                <ion-label floating>Medication Name</ion-label>
+                <ion-input type="text"
+                           [(ngModel)]="doseMedication.name"
+                           required></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label floating>Dose Amount</ion-label>
+                <ion-input type="number"
+                           [(ngModel)]="doseMedication.doseAmount"
+                           required></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label floating>Dose Units (mg)</ion-label>
+                <ion-input type="text"
+                           [(ngModel)]="doseMedication.doseUnit"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label floating>Pill number</ion-label>
+                <ion-input type="text"
+                           [(ngModel)]="doseMedication.totalAmount"
+                           required></ion-input>
+            </ion-item>
+
+
+            <ion-item>
+
+                <button item-right
+                        secondary
+                        (click)="cancel()">
+                    <ion-icon name="close"></ion-icon>
+                    Cancel
+                </button>
+
+                <button item-right
+                        type="submit"
+                        primary
+                        [disabled]="!requestForm.form.valid">
+                    <ion-icon name="add"></ion-icon>
+                    Add Medication
+                </button>
+
+            </ion-item>
+
+        </ion-list>
+
+    </form>
+
+</ion-content>

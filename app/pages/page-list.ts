@@ -5,6 +5,8 @@ import {DosePage} from "./dose/dose";
 import {AmigoRequestsPage} from "./amigo-requests/amigo-requests";
 import {ProfilePage} from "./profile/profile";
 import {TestingPage} from "./testing/testing";
+import {MedListPage} from "./med-list/med-list";
+
 
 /**
  * List of pages for side navigation.
@@ -39,5 +41,15 @@ export var PAGE_LIST: Array<Page> = [
         title: "Testing",
         component: TestingPage,
         icon: "checkmark"
+    },
+    {
+        title: "My Medications",
+        component: MedListPage,
+        icon: "medkit"
+    },
+    {
+        title: "Log out",
+        component: ProfilePage,
+        icon: "log-out"
     }
 ];
