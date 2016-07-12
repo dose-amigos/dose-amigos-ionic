@@ -2,7 +2,7 @@
 
     <dose-amigos-toolbar [title]="title"></dose-amigos-toolbar>
 
-    <ion-toolbar>
+    <ion-toolbar *ngIf="auth.authenticated()">
         <ion-buttons left>
             <button>
                 <ion-icon name="arrow-back"></ion-icon>
@@ -20,11 +20,15 @@
 
 <ion-content padding class="dose">
 
-    <ion-list>
+    <logon-required>
 
-        <dose-event-slider *ngFor="let doseEvent of doseEvents"
-                           [doseEvent]="doseEvent"></dose-event-slider>
+        <ion-list>
 
-    </ion-list>
+            <dose-event-slider *ngFor="let doseEvent of doseEvents"
+                               [doseEvent]="doseEvent"></dose-event-slider>
+
+        </ion-list>
+
+    </logon-required>
 
 </ion-content>

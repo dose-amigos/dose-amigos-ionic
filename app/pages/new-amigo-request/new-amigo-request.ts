@@ -2,12 +2,14 @@ import {DoseAmigosToolbar} from "../../dose-amigos-toolbar/dose-amigos-toolbar.c
 import {Component, OnInit} from "@angular/core";
 import {AmigoShareRequest} from "../../amigo-share-request/amigo-share-request";
 import {NavController} from "ionic-angular/index";
+import {LogonPanelComponent} from "../../logon-panel-component/logon-panel.component";
 
 @Component(
     {
         templateUrl: "build/pages/new-amigo-request/new-amigo-request.html",
         directives: [
-            DoseAmigosToolbar
+            DoseAmigosToolbar,
+            LogonPanelComponent
         ]
     }
 )

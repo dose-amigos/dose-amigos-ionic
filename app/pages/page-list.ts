@@ -3,6 +3,7 @@ import {FeedPage} from "./feed/feed";
 import {AmigosPage} from "./amigos/amigos";
 import {DosePage} from "./dose/dose";
 import {AmigoRequestsPage} from "./amigo-requests/amigo-requests";
+import {ProfilePage} from "./profile/profile";
 
 /**
  * List of pages for side navigation.
@@ -27,5 +28,10 @@ export var PAGE_LIST: Array<Page> = [
         title: "Amigo Requests",
         component: AmigoRequestsPage,
         icon: "person-add"
+    },
+    {
+        title: "Log out",
+        component: ProfilePage,
+        icon: "log-out"
     }
 ];

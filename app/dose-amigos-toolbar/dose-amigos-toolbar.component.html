@@ -1,11 +1,15 @@
 <ion-navbar primary>
 
-    <button menuToggle>
+    <button menuToggle *ngIf="auth.authenticated()">
         <ion-icon name='menu'></ion-icon>
     </button>
 
-    <ion-title>
+    <ion-title *ngIf="auth.authenticated()">
         {{title}}
+    </ion-title>
+
+    <ion-title *ngIf="!auth.authenticated()">
+        Dose Amigos
     </ion-title>
 
 </ion-navbar>

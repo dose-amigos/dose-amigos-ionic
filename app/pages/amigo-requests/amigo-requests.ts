@@ -4,6 +4,7 @@ import {AmigoShareRequestService} from "../../amigo-share-request-service/amigo-
 import {AmigoShareRequest} from "../../amigo-share-request/amigo-share-request";
 import {AmigoShareRequestCardComponent} from "../../amigo-share-request-card/amigo-share-request-card.component";
 import {AmigoRequestCreateComponent} from "../../amigo-request-create-component/amigo-request-create.component";
+import {LogonPanelComponent} from "../../logon-panel-component/logon-panel.component";
 
 @Component(
     {
@@ -11,7 +12,8 @@ import {AmigoRequestCreateComponent} from "../../amigo-request-create-component/
         directives: [
             AmigoShareRequestCardComponent,
             DoseAmigosToolbar,
-            AmigoRequestCreateComponent
+            AmigoRequestCreateComponent,
+            LogonPanelComponent
         ]
     }
 )

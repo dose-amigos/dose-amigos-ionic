@@ -1,0 +1,36 @@
+<ion-header>
+    <dose-amigos-toolbar [title]="title"></dose-amigos-toolbar>
+</ion-header>
+
+<ion-content padding class="profile">
+
+    <logon-required>
+
+        <ion-card>
+
+            <ion-item *ngIf="auth.user">
+                <ion-avatar item-left>
+                    <img [src]="auth.user.picture">
+                </ion-avatar>
+                <h2>
+                    {{auth.user.nickname}}
+                </h2>
+                <p>
+                    {{auth.user.email}}
+                </p>
+            </ion-item>
+
+            <ion-item>
+                <button item-right (click)="cancel()">
+                    Cancel
+                </button>
+                <button item-right (click)="logout()">
+                    Logout
+                </button>
+            </ion-item>
+
+        </ion-card>
+
+    </logon-required>
+
+</ion-content>
