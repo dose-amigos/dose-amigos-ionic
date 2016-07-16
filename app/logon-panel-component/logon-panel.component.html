@@ -1,0 +1,24 @@
+<div class="logon-panel" *ngIf="!auth.authenticated()">
+
+    <ion-card>
+        <img class="logo" src="build/../images/logo.png" />
+
+        <ion-card-content>
+            <ion-card-title class="app-name">
+                Dose Amigos
+            </ion-card-title>
+            <p class="slogan">
+                Don't miss a dose with help from your amigos.
+            </p>
+        </ion-card-content>
+
+        <ion-item>
+            <button item-right (click)="auth.login()">
+                Login
+            </button>
+        </ion-item>
+    </ion-card>
+
+</div>
+
+<ng-content *ngIf="auth.authenticated()"></ng-content>

@@ -4,10 +4,14 @@
 
 <ion-content padding class="feed">
 
-    <user-status-card [user]="authUser.userInfo"
-                      [onClickPage]="userStatusClickPage"></user-status-card>
+    <logon-required>
 
-    <feed-event-card *ngFor="let feedEvent of feedEvents"
-                     [feedEvent]="feedEvent"></feed-event-card>
+        <user-status-card [user]="authUser.userInfo"
+                          [onClickPage]="userStatusClickPage"></user-status-card>
+
+        <feed-event-card *ngFor="let feedEvent of feedEvents"
+                         [feedEvent]="feedEvent"></feed-event-card>
+
+    </logon-required>
 
 </ion-content>

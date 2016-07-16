@@ -5,6 +5,7 @@ import {DoseAmigosUser} from "../../dose-amigos-user/dose-amigos-user";
 import {UserStatusCardComponent} from "../../user-status-card/user-status-card.component";
 import {FeedPage} from "../feed/feed";
 import {AmigoRequestCreateComponent} from "../../amigo-request-create-component/amigo-request-create.component";
+import {LogonPanelComponent} from "../../logon-panel-component/logon-panel.component";
 
 @Component(
     {
@@ -12,7 +13,8 @@ import {AmigoRequestCreateComponent} from "../../amigo-request-create-component/
         directives: [
             DoseAmigosToolbar,
             UserStatusCardComponent,
-            AmigoRequestCreateComponent
+            AmigoRequestCreateComponent,
+            LogonPanelComponent
         ]
     }
 )

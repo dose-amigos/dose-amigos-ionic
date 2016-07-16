@@ -4,43 +4,47 @@
 
 <ion-content padding  class="new-amigo-request">
 
-    <form (ngSubmit)="onSubmit()"
-          #requestForm="ngForm">
+    <logon-required>
 
-        <h3>
-            Enter Amigo's email address.
-        </h3>
+        <form (ngSubmit)="onSubmit()"
+              #requestForm="ngForm">
 
-        <ion-list>
+            <h3>
+                Enter Amigo's email address.
+            </h3>
 
-            <ion-item>
-                <ion-label floating>Amigo's Email</ion-label>
-                <ion-input type="email"
-                           [(ngModel)]="amigoShareRequest.targetUserEmail"
-                           required></ion-input>
-            </ion-item>
+            <ion-list>
 
-            <ion-item>
+                <ion-item>
+                    <ion-label floating>Amigo's Email</ion-label>
+                    <ion-input type="email"
+                               [(ngModel)]="amigoShareRequest.targetUserEmail"
+                               required></ion-input>
+                </ion-item>
 
-                <button item-right
-                        secondary
-                        (click)="cancel()">
-                    <ion-icon name="close"></ion-icon>
-                    Cancel
-                </button>
+                <ion-item>
 
-                <button item-right
-                        type="submit"
-                        primary
-                        [disabled]="!requestForm.form.valid">
-                    <ion-icon name="person-add"></ion-icon>
-                    Invite
-                </button>
+                    <button item-right
+                            secondary
+                            (click)="cancel()">
+                        <ion-icon name="close"></ion-icon>
+                        Cancel
+                    </button>
 
-            </ion-item>
+                    <button item-right
+                            type="submit"
+                            primary
+                            [disabled]="!requestForm.form.valid">
+                        <ion-icon name="person-add"></ion-icon>
+                        Invite
+                    </button>
 
-        </ion-list>
+                </ion-item>
 
-    </form>
+            </ion-list>
+
+        </form>
+
+    </logon-required>
 
 </ion-content>

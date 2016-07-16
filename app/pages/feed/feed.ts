@@ -7,6 +7,7 @@ import {AuthUserService} from "../../auth-user-service/auth-user.service";
 import {AuthUser} from "../../auth-user/auth-user";
 import {UserStatusCardComponent} from "../../user-status-card/user-status-card.component";
 import {DosePage} from "../dose/dose";
+import {LogonPanelComponent} from "../../logon-panel-component/logon-panel.component";
 
 /**
  * Component that renders the Amigos Feed Page of dose events.
@@ -17,7 +18,8 @@ import {DosePage} from "../dose/dose";
         directives: [
             FeedEventCardComponent,
             DoseAmigosToolbar,
-            UserStatusCardComponent
+            UserStatusCardComponent,
+            LogonPanelComponent
         ]
     }
 )

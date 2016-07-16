@@ -4,10 +4,14 @@
 
 <ion-content padding class="amigos">
 
-    <user-status-card *ngFor="let user of doseAmigosUsers"
-                      [user]="user"
-                      [onClickPage]="userStatusClickPage"></user-status-card>
+    <logon-required>
 
-    <amigo-request-fab></amigo-request-fab>
+        <user-status-card *ngFor="let user of doseAmigosUsers"
+                          [user]="user"
+                          [onClickPage]="userStatusClickPage"></user-status-card>
+
+        <amigo-request-fab></amigo-request-fab>
+
+    </logon-required>
 
 </ion-content>

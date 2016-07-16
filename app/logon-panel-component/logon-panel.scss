@@ -1,0 +1,17 @@
+.logon-panel {
+  background-color: color($colors, backdrop);
+}
+
+.logon-panel img.logo {
+  width: 192px;
+  height: 192px;
+  margin: auto;
+}
+
+.app-name {
+  color: color($colors, primary);
+}
+
+.slogan {
+  color: color($colors, secondary);
+}

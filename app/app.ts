@@ -1,4 +1,4 @@
-import {Component, ViewChild} from "@angular/core";
+import {Component, ViewChild, provide} from "@angular/core";
 import {Platform, ionicBootstrap, Nav} from "ionic-angular";
 import {StatusBar} from "ionic-native";
 import {FeedPage} from "./pages/feed/feed";
@@ -11,6 +11,10 @@ import {DoseAmigosUserService} from "./dose-amigos-user-service/dose-amigos-user
 import {AmigoShareRequestService} from "./amigo-share-request-service/amigo-share-request.service";
 import {DoseEventService} from "./dose-event-service/dose-event.service";
 import {DoseMedicationService} from "./dose-medication-service/dose-medication.service";
+import {Http} from "@angular/http";
+import {AuthHttp, AuthConfig} from "angular2-jwt";
+import {AuthService} from "./auth-service/auth.service";
+import "./rxjs-operators";
 
 /**
  * DoseAmigosApp component for initializing app and routes.
@@ -19,6 +23,21 @@ import {DoseMedicationService} from "./dose-medication-service/dose-medication.s
     {
         templateUrl: "build/app.html",
         providers: [
+            provide(
+                AuthHttp,
+                {
+                    useFactory: (http) => {
+                        return new AuthHttp(
+                            new AuthConfig(),
+                            http
+                        );
+                    },
+                    deps: [
+                        Http
+                    ]
+                }
+            ),
+            AuthService,
             AmigoShareRequestService,
             AuthUserService,
             FeedEventService,
@@ -37,7 +56,11 @@ export class DoseAmigosApp {
     pages: Array<Page>;
     rootPage: any = FeedPage;
 
-    constructor(private platform: Platform) {
+    constructor(
+        private platform: Platform,
+        private authHttp: AuthHttp,
+        private auth: AuthService
+    ) {
         this.initializeApp();
 
         this.pages = PAGE_LIST;
@@ -55,6 +78,12 @@ export class DoseAmigosApp {
                 // Okay, so the platform is ready and our plugins are available.
                 // Here you can do any higher level native things you might need.
                 StatusBar.styleDefault();
+
+                // When the app starts up, there might be a valid
+                // token in local storage. If there is, we should
+                // schedule an initial token refresh for when the
+                // token expires
+                this.auth.startupTokenRefresh();
             }
         );
     }

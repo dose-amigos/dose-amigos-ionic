@@ -3,6 +3,7 @@ import {DosePage} from "./dose";
 import {DOSE_EVENTS} from "../../dose-event-service/dose-event-mocks";
 import {DoseEvent} from "../../dose-event/dose-event";
 import {DoseEventService} from "../../dose-event-service/dose-event.service";
+import {AuthService} from "../../auth-service/auth.service";
 
 class MockDoseEventService {
 
@@ -14,6 +15,10 @@ class MockDoseEventService {
 
 }
 
+class MockAuthService {
+
+}
+
 /**
  * Tests for DosePage component.
  */
@@ -22,9 +27,11 @@ describe("DosePage", () => {
     it("should get DoseEvents from the service", () => {
 
         const mockDoseEventService: DoseEventService = new MockDoseEventService() as DoseEventService;
+        const mockAuthService: AuthService = new MockAuthService() as AuthService;
 
         const dosePage: DosePage = new DosePage(
-            mockDoseEventService
+            mockDoseEventService,
+            mockAuthService
         );
 
         return dosePage.ngOnInit().then(
@@ -43,9 +50,11 @@ describe("DosePage", () => {
     it("should have title set", () => {
 
         const mockDoseEventService: DoseEventService = new MockDoseEventService() as DoseEventService;
+        const mockAuthService: AuthService = new MockAuthService() as AuthService;
 
         const dosePage: DosePage = new DosePage(
-            mockDoseEventService
+            mockDoseEventService,
+            mockAuthService
         );
 
         return dosePage.ngOnInit().then(
