@@ -1,0 +1,25 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>Testing</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+    <div>
+        <h2>
+            DoseMedicationService
+        </h2>
+        <div>
+            <h4>
+                list()
+            </h4>
+            <p *ngFor="let medication of medications">
+                {{medication | json}}
+            </p>
+        </div>
+    </div>
+
+</ion-content>

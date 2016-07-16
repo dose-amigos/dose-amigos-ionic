@@ -1,9 +1,9 @@
 import {Storage, LocalStorage} from "ionic-angular";
-import {AuthHttp, JwtHelper, tokenNotExpired} from "angular2-jwt";
 import {Injectable, NgZone} from "@angular/core";
 import {Observable} from "rxjs/Rx";
 import "../rxjs-operators";
 import {InAppBrowser} from "ionic-native/dist/index";
+import {JwtHelper, AuthHttp, tokenNotExpired} from "../angular2-jwt";
 
 // Avoid name not found warnings
 declare var Auth0Lock: any;

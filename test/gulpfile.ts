@@ -81,7 +81,12 @@ gulp.task('lint', () => {
 
   let tslint: any = require('gulp-tslint');
 
-  return gulp.src(join(config.appDir, '**/*.ts'))
+  return gulp.src(
+      [
+        join(config.appDir, '**/*.ts'),
+        '!**/angular2-jwt.ts' /* Exclude 3rd party file copied into project. */
+      ]
+  )
       .pipe(tslint())
       .pipe(tslint.report('verbose'));
 });

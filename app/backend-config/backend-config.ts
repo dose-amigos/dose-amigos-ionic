@@ -1,0 +1,1 @@
+export var BACKEND_URL: string = "https://x9twbox3pl.execute-api.us-east-1.amazonaws.com/dev";
