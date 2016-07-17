@@ -1,6 +1,7 @@
 import {DoseAmigosToolbar} from "../../dose-amigos-toolbar/dose-amigos-toolbar.component";
 import {Component, OnInit} from "@angular/core";
 import {DoseMedication} from "../../dose-medication/dose-medication";
+import {DoseSeries} from "../../dose-series/dose-series";
 import {NavController} from "ionic-angular/index";
 
 @Component(
@@ -16,6 +17,7 @@ export class NewDoseMedicationPage implements OnInit {
     public title: string = "New Dose Medication";
 
     public doseMedication: DoseMedication;
+    public doseSeries: DoseSeries;
 
     constructor(
         private nav: NavController
@@ -26,16 +28,20 @@ export class NewDoseMedicationPage implements OnInit {
     public ngOnInit(): any {
 
         this.doseMedication = new DoseMedication();
+        this.doseSeries = new DoseSeries();
 
         return Promise.resolve(
-            this.doseMedication
+            this.doseSeries
         );
     }
 
-    public onSubmit(): DoseMedication {
+    public onSubmit(): DoseSeries {
         /* Will need to save via service. */
+
+        this.doseSeries.med = this.doseMedication;
+
         this.nav.pop();
-        return this.doseMedication;
+        return this.doseSeries;
     }
 
     public cancel() {

@@ -3,19 +3,15 @@
 </ion-header>
 
 <ion-content padding  class="new-dose-medication">
-
     <form (ngSubmit)="onSubmit()"
           #requestForm="ngForm">
-
         <ion-list>
-
             <ion-item>
                 <ion-label floating>Medication Name</ion-label>
                 <ion-input type="text"
                            [(ngModel)]="doseMedication.name"
                            required></ion-input>
             </ion-item>
-
             <ion-item>
                 <ion-label floating>Dose Amount</ion-label>
                 <ion-input type="number"
@@ -24,21 +20,52 @@
             </ion-item>
 
             <ion-item>
-                <ion-label floating>Dose Units (mg)</ion-label>
+                <ion-label floating>Dose Units (pills, mg, cc, etc.)</ion-label>
                 <ion-input type="text"
                            [(ngModel)]="doseMedication.doseUnit"></ion-input>
             </ion-item>
 
             <ion-item>
-                <ion-label floating>Pill number</ion-label>
-                <ion-input type="text"
-                           [(ngModel)]="doseMedication.totalAmount"
-                           required></ion-input>
+                <ion-label>Sunday</ion-label>
+                <ion-checkbox checked="false"></ion-checkbox>
             </ion-item>
 
+            <ion-item>
+                <ion-label>Monday</ion-label>
+                <ion-checkbox checked="false"></ion-checkbox>
+            </ion-item>
 
             <ion-item>
+                <ion-label>Tuesday</ion-label>
+                <ion-checkbox checked="false"></ion-checkbox>
+            </ion-item>
 
+            <ion-item>
+                <ion-label>Wednesday</ion-label>
+                <ion-checkbox checked="false"></ion-checkbox>
+            </ion-item>
+
+            <ion-item>
+                <ion-label>Thursday</ion-label>
+                <ion-checkbox checked="false"></ion-checkbox>
+            </ion-item>
+
+            <ion-item>
+                <ion-label>Friday</ion-label>
+                <ion-checkbox checked="false"></ion-checkbox>
+            </ion-item>
+
+            <ion-item>
+                <ion-label>Saturday</ion-label>
+                <ion-checkbox checked="false"></ion-checkbox>
+            </ion-item>
+
+            <ion-item>
+                <ion-label>What times?</ion-label>
+                <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A"></ion-datetime>
+            </ion-item>
+    
+            <ion-item>
                 <button item-right
                         secondary
                         (click)="cancel()">
@@ -53,11 +80,8 @@
                     <ion-icon name="add"></ion-icon>
                     Add Medication
                 </button>
-
             </ion-item>
 
         </ion-list>
-
     </form>
-
 </ion-content>
