@@ -1,6 +1,8 @@
 import {Injectable} from "@angular/core";
 import {AmigoShareRequest} from "../amigo-share-request/amigo-share-request";
-import {AMIGO_SHARE_REQUESTS} from "./amigo-share-request.mocks";
+import {BACKEND_URL} from "../backend-config/backend-config";
+import {AuthHttp} from "../angular2-jwt";
+import {Headers} from "@angular/http";
 
 /**
  * Service for fetching and saving AmigoShareRequest instances.
@@ -8,13 +10,24 @@ import {AMIGO_SHARE_REQUESTS} from "./amigo-share-request.mocks";
 @Injectable()
 export class AmigoShareRequestService {
 
+    private shareRequestsUrl: string = `${BACKEND_URL}/share-requests`;
+
+    constructor(
+        private http: AuthHttp
+    ) {
+    }
+
     /**
      * Get a list of AmigoShareRequests.
      * @returns {Promise<Array<AmigoShareRequest>>}
      */
     public list(): Promise<Array<AmigoShareRequest>> {
-        return Promise.resolve(
-            AMIGO_SHARE_REQUESTS
+        return this.http.get(
+            this.shareRequestsUrl
+        ).toPromise().then(
+            (response) => response.json()
+        ).catch(
+            this.handleError
         );
     }
 
@@ -26,11 +39,80 @@ export class AmigoShareRequestService {
     public get(
         shareId: number
     ): Promise<AmigoShareRequest> {
-        return Promise.resolve(
-            AMIGO_SHARE_REQUESTS.filter(
-                (amigoShareRequest) => amigoShareRequest.shareId === shareId
-            )[0]
+        return this.http.get(
+            `${this.shareRequestsUrl}/${shareId}`
+        ).toPromise().then(
+            (response) => response.json()
+        ).catch(
+            this.handleError
         );
+    }
+
+    private post(
+        amigoShareRequest: AmigoShareRequest
+    ): Promise<AmigoShareRequest> {
+
+        const headers = new Headers(
+            {
+                "Content-Type": "application/json"
+            }
+        );
+
+        return this.http.post(
+            this.shareRequestsUrl,
+            JSON.stringify(amigoShareRequest),
+            {
+                headers: headers
+            }
+        ).toPromise().then(
+            res => res.json()
+        ).catch(
+            this.handleError
+        );
+    }
+
+    private put(
+        amigoShareRequest: AmigoShareRequest
+    ): Promise<AmigoShareRequest> {
+
+        const headers = new Headers(
+            {
+                "Content-Type": "application/json"
+            }
+        );
+
+        return this.http.put(
+            `${this.shareRequestsUrl}/${amigoShareRequest.id}`,
+            JSON.stringify(amigoShareRequest),
+            {
+                headers: headers
+            }
+        ).toPromise().then(
+            res => res.json()
+        ).catch(
+            this.handleError
+        );
+    }
+
+    public save(
+        amigoShareRequest: AmigoShareRequest
+    ): Promise<AmigoShareRequest> {
+
+        if (amigoShareRequest.id) {
+            return this.put(amigoShareRequest);
+        }
+
+        return this.post(amigoShareRequest);
+    }
+
+    /**
+     * Handles any errors communicating with backend.
+     * @param error
+     * @returns {Promise<void>|Promise<T>}
+     */
+    private handleError(error: any) {
+        console.error("An error occurred", error);
+        return Promise.reject(error.message || error);
     }
 
 }

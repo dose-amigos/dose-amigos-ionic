@@ -7,7 +7,9 @@
     <logon-required>
 
         <amigo-share-request-card *ngFor="let amigoShareRequest of amigoShareRequests"
-                                  [amigoShareRequest]="amigoShareRequest"></amigo-share-request-card>
+                                  [amigoShareRequest]="amigoShareRequest"
+                                  [accept]="accept"
+                                  [decline]="decline"></amigo-share-request-card>
 
         <amigo-request-fab></amigo-request-fab>
 
