@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from "@angular/core";
+import {Component, Input} from "@angular/core";
 import {DoseEvent} from "../dose-event/dose-event";
 import {ItemSliding} from "ionic-angular/index";
 
