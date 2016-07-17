@@ -26,7 +26,7 @@ export class DoseNotifications {
         LocalNotifications.schedule({
             title: "Dose Amigos Reminder",
             text: "Time to take your medication!",
-            firstAt: new Date(d.getTime()),
+            at: new Date(d.getTime()),
             sound: null
         });
     }
