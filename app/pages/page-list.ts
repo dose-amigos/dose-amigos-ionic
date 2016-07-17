@@ -33,19 +33,15 @@ export var PAGE_LIST: Array<Page> = [
         icon: "person-add"
     },
     {
-        title: "Log out",
-        component: ProfilePage,
-        icon: "log-out"
+
+        title: "My Medications",
+        component: MedListPage,
+        icon: "medkit"
     },
     {
         title: "Testing",
         component: TestingPage,
         icon: "checkmark"
-    },
-    {
-        title: "My Medications",
-        component: MedListPage,
-        icon: "medkit"
     },
     {
         title: "Log out",
