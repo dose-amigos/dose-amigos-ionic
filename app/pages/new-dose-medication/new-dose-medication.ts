@@ -29,6 +29,7 @@ export class NewDoseMedicationPage implements OnInit {
 
         this.doseMedication = new DoseMedication();
         this.doseSeries = new DoseSeries();
+        this.doseSeries.timesOfDay = new Array<Date>();
 
         return Promise.resolve(
             this.doseSeries
@@ -46,6 +47,10 @@ export class NewDoseMedicationPage implements OnInit {
 
     public cancel() {
         this.nav.pop();
+    }
+
+    public newTime() {
+        this.doseSeries.timesOfDay.push(new Date());
     }
 
 }

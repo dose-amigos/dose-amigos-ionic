@@ -12,12 +12,15 @@
                            [(ngModel)]="doseMedication.name"
                            required></ion-input>
             </ion-item>
+
+
             <ion-item>
                 <ion-label floating>Dose Amount</ion-label>
                 <ion-input type="number"
                            [(ngModel)]="doseMedication.doseAmount"
                            required></ion-input>
             </ion-item>
+
 
             <ion-item>
                 <ion-label floating>Dose Units (pills, mg, cc, etc.)</ion-label>
@@ -61,9 +64,28 @@
             </ion-item>
 
             <ion-item>
-                <ion-label>What times?</ion-label>
-                <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A"></ion-datetime>
+                <!--ion-list>
+                    <ion-item *ngFor="let doseTime of doseSeries.timesOfDay">
+                        <ion-label>What time?</ion-label>
+                            <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A"
+                                    [(ngModel)]="doseTime">
+                            </ion-datetime>
+                    </ion-item>
+                </ion-list-->
+
+                <ion-label>What time?</ion-label>
+                <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A"
+                                    [(ngModel)]="doseTime">
+                </ion-datetime>
+
             </ion-item>
+
+            <!--ion-item>
+                <button item-right
+                    (click)="newTime()">
+                    + Add time
+                </button>
+            </ion-item-->
     
             <ion-item>
                 <button item-right
@@ -84,4 +106,5 @@
 
         </ion-list>
     </form>
+
 </ion-content>
