@@ -12,9 +12,9 @@ import {AmigoShareRequestService} from "./amigo-share-request-service/amigo-shar
 import {DoseEventService} from "./dose-event-service/dose-event.service";
 import {DoseMedicationService} from "./dose-medication-service/dose-medication.service";
 import {Http} from "@angular/http";
-import {AuthHttp, AuthConfig} from "angular2-jwt";
 import {AuthService} from "./auth-service/auth.service";
 import "./rxjs-operators";
+import {AuthHttp, AuthConfig} from "./angular2-jwt";
 
 /**
  * DoseAmigosApp component for initializing app and routes.
