@@ -17,6 +17,7 @@ export class NewDoseMedicationPage implements OnInit {
     public title: string = "New Dose Medication";
     public doseSeries: DoseSeries;
     public everyday: boolean;
+    public doseTime: Date
 
     constructor(
         private nav: NavController
@@ -39,14 +40,14 @@ export class NewDoseMedicationPage implements OnInit {
     public onSubmit(): DoseSeries {
         /* Will need to save via service. */
 
-        if (everday){
+        if (this.everyday){
             this.doseSeries.daysOfWeek = [1,2,3,4,5,6,7];
         }
         else{
             this.doseSeries.daysOfWeek = [1];
         }
 
-        this.doseSeries.timesOfDay.push(new Date(doseTime));
+        this.doseSeries.timesOfDay.push(this.doseTime);
 
         this.nav.pop();
         return this.doseSeries;
