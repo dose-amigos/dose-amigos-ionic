@@ -15,9 +15,8 @@ import {NavController} from "ionic-angular/index";
 export class NewDoseMedicationPage implements OnInit {
 
     public title: string = "New Dose Medication";
-
-    public doseMedication: DoseMedication;
     public doseSeries: DoseSeries;
+    public everyday: boolean;
 
     constructor(
         private nav: NavController
@@ -26,9 +25,10 @@ export class NewDoseMedicationPage implements OnInit {
     }
 
     public ngOnInit(): any {
-
-        this.doseMedication = new DoseMedication();
         this.doseSeries = new DoseSeries();
+        this.doseSeries.med = new DoseMedication();
+
+        this.doseSeries.daysOfWeek = new Array<number>();
         this.doseSeries.timesOfDay = new Array<Date>();
 
         return Promise.resolve(
@@ -39,7 +39,14 @@ export class NewDoseMedicationPage implements OnInit {
     public onSubmit(): DoseSeries {
         /* Will need to save via service. */
 
-        this.doseSeries.med = this.doseMedication;
+        if (everday){
+            this.doseSeries.daysOfWeek = [1,2,3,4,5,6,7];
+        }
+        else{
+            this.doseSeries.daysOfWeek = [1];
+        }
+
+        this.doseSeries.timesOfDay.push(new Date(doseTime));
 
         this.nav.pop();
         return this.doseSeries;
