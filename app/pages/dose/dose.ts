@@ -5,6 +5,7 @@ import {DoseEventService} from "../../dose-event-service/dose-event.service";
 import {DoseEvent} from "../../dose-event/dose-event";
 import {LogonPanelComponent} from "../../logon-panel-component/logon-panel.component";
 import {AuthService} from "../../auth-service/auth.service";
+import {DoseEventFabComponent} from "../../dose-event-fab/dose-event-fab.component";
 
 @Component(
     {
@@ -12,7 +13,8 @@ import {AuthService} from "../../auth-service/auth.service";
         directives: [
             DoseAmigosToolbar,
             DoseEventSliderComponent,
-            LogonPanelComponent
+            LogonPanelComponent,
+            DoseEventFabComponent
         ]
     }
 )

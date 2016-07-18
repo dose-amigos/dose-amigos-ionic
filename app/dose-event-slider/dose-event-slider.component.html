@@ -1,21 +1,36 @@
-<ion-item-sliding *ngIf="doseEvent">
+<ion-item-sliding #slidingItem *ngIf="doseEvent">
 
     <ion-item>
+
         <ion-avatar item-left>
-            <ion-icon name="checkmark-circle" primary></ion-icon>
+
+            <ion-icon *ngIf="doseEvent.action === 'TAKEN'"
+                      name="checkmark-circle"
+                      primary></ion-icon>
+
+            <ion-icon *ngIf="doseEvent.action === 'SKIPPED'"
+                      name="notifications-off"
+                      primary></ion-icon>
+
         </ion-avatar>
-        <h2>{{doseEvent.med.name}}</h2>
-        <p>50mg Twice Daily</p>
-        <button clear item-right>More Info</button>
+
+        <div tappable (click)="toggleTaken()">
+            <h2>{{doseEvent.med.name}}</h2>
+            <p>50mg Twice Daily</p>
+        </div>
+
+        <ion-icon item-right name="arrow-dropleft"></ion-icon>
     </ion-item>
+
     <ion-item-options>
-        <button primary>
-            <ion-icon name="Taken"></ion-icon>
-            Taken
+        <button primary (click)="slidingTakeEvent(slidingItem)">
+            <ion-icon name="Take"></ion-icon>
+            Take
         </button>
-        <button secondary>
-            <ion-icon name="Snooze"></ion-icon>
-            Snooze
+        <button secondary (click)="skipEvent(slidingItem)">
+            <ion-icon name="Skip"></ion-icon>
+            Skip
         </button>
     </ion-item-options>
+
 </ion-item-sliding>
