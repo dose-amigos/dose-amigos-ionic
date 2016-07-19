@@ -23,21 +23,55 @@ export class AmigoRequestsPage implements OnInit {
 
     public amigoShareRequests: Array<AmigoShareRequest>;
 
+    public accept: (AmigoShareRequest) => void;
+
+    public decline: (AmigoShareRequest) => void;
+
     constructor(
         private amigoShareRequestService: AmigoShareRequestService
     ) {
+        this.accept = this.acceptAmigoShareRequest.bind(this);
+        this.decline = this.declineAmigoShareRequest.bind(this);
     }
 
     /**
      * Initialize the page.
      * @returns {Promise}
      */
-    ngOnInit(): any {
+    public ngOnInit(): any {
         return this.amigoShareRequestService.list().then(
             amigoShareRequests => {
                 this.amigoShareRequests = amigoShareRequests;
             }
         );
+    }
+
+    private saveAmigoShareRequest(
+        amigoShareRequest: AmigoShareRequest
+    ) {
+        this.amigoShareRequestService.save(
+            amigoShareRequest
+        ).then(
+            function () {
+                this.amigoShareRequests = this.amigoShareRequests.filter(
+                    (amigoShareRequestInList) => amigoShareRequest.id !== amigoShareRequestInList.id
+                );
+            }.bind(this)
+        );
+    }
+
+    private acceptAmigoShareRequest(
+        amigoShareRequest: AmigoShareRequest
+    ) {
+        amigoShareRequest.accepted = true;
+        this.saveAmigoShareRequest(amigoShareRequest);
+    }
+
+    private declineAmigoShareRequest(
+        amigoShareRequest: AmigoShareRequest
+    ) {
+        amigoShareRequest.accepted = false;
+        this.saveAmigoShareRequest(amigoShareRequest);
     }
 
 }

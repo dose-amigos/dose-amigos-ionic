@@ -15,4 +15,18 @@ export class AmigoShareRequestCardComponent {
     @Input()
     public amigoShareRequest: AmigoShareRequest;
 
+    @Input()
+    public accept: (AmigoShareRequest) => void;
+
+    @Input()
+    public decline: (AmigoShareRequest) => void;
+
+    public acceptRequest() {
+        this.accept(this.amigoShareRequest);
+    }
+
+    public declineRequest() {
+        this.decline(this.amigoShareRequest);
+    }
+
 }

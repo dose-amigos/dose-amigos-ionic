@@ -2,7 +2,7 @@ import {DoseAmigosUser} from "../dose-amigos-user/dose-amigos-user";
 
 export class AmigoShareRequest {
 
-    shareId: number;
+    id: number;
     sharedAmigo: DoseAmigosUser;
     targetUserEmail: string;
     accepted: boolean;

@@ -14,7 +14,7 @@ describe("AmigoShareRequestCardComponent", () => {
             const element = componentFixture.nativeElement;
 
             componentFixture.componentInstance.amigoShareRequest = new AmigoShareRequest();
-            componentFixture.componentInstance.amigoShareRequest.shareId = 1;
+            componentFixture.componentInstance.amigoShareRequest.id = 1;
             componentFixture.componentInstance.amigoShareRequest.targetUserEmail = "a@example.org";
 
             componentFixture.componentInstance.amigoShareRequest.sharedAmigo = new DoseAmigosUser();

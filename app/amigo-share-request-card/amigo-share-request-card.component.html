@@ -20,12 +20,14 @@
     <ion-row>
         <ion-col>
 
-            <button secondary clear small>
+            <button secondary clear small
+                    (click)="declineRequest()">
                 <ion-icon name="remove-circle"></ion-icon>
                 <div>Decline</div>
             </button>
 
-            <button primary clear small>
+            <button primary clear small
+                    (click)="acceptRequest()">
                 <ion-icon name="add-circle"></ion-icon>
                 <div>Accept</div>
             </button>

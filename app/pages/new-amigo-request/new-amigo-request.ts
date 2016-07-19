@@ -3,6 +3,7 @@ import {Component, OnInit} from "@angular/core";
 import {AmigoShareRequest} from "../../amigo-share-request/amigo-share-request";
 import {NavController} from "ionic-angular/index";
 import {LogonPanelComponent} from "../../logon-panel-component/logon-panel.component";
+import {AmigoShareRequestService} from "../../amigo-share-request-service/amigo-share-request.service";
 
 @Component(
     {
@@ -20,7 +21,8 @@ export class NewAmigoRequestPage implements OnInit {
     public amigoShareRequest: AmigoShareRequest;
 
     constructor(
-        private nav: NavController
+        private nav: NavController,
+        private amigoShareRequestService: AmigoShareRequestService
     ) {
 
     }
@@ -34,10 +36,14 @@ export class NewAmigoRequestPage implements OnInit {
         );
     }
 
-    public onSubmit(): AmigoShareRequest {
-        /* Will need to save via service. */
-        this.nav.pop();
-        return this.amigoShareRequest;
+    public onSubmit(): Promise<AmigoShareRequest> {
+        return this.amigoShareRequestService.save(
+            this.amigoShareRequest
+        ).then(
+            function () {
+                this.nav.pop();
+            }.bind(this)
+        );
     }
 
     public cancel() {
