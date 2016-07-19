@@ -17,13 +17,13 @@ const pebblesUser: DoseAmigosUser = {
 
 export var AMIGO_SHARE_REQUESTS: Array<AmigoShareRequest> = [
     {
-        shareId: 9876,
+        id: 9876,
         sharedAmigo: dinoUser,
         targetUserEmail: "fred.flintstone@example.org",
         accepted: false
     },
     {
-        shareId: 5432,
+        id: 5432,
         sharedAmigo: pebblesUser,
         targetUserEmail: "fred.flintstone@example.org",
         accepted: false
