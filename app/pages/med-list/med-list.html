@@ -1,0 +1,18 @@
+<ion-header>
+	<dose-amigos-toolbar [title]="title"></dose-amigos-toolbar>
+</ion-header>
+
+<ion-content padding class="med-list">
+
+    <logon-required>
+		<ion-list>
+
+	        <med-list-event *ngFor="let doseMedication of doseMedications"
+	                  [doseMedication]="doseMedication"></med-list-event>
+
+	    </ion-list>
+	</logon-required>
+
+    <med-list-fab></med-list-fab>
+
+</ion-content>
