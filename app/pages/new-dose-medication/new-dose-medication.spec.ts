@@ -1,11 +1,16 @@
 import {it, describe, expect} from "@angular/core/testing";
 import {NavController} from "ionic-angular/index";
 import {NewDoseMedicationPage} from "./new-dose-medication";
+import {DoseMedicationService} from "../../dose-medication-service/dose-medication.service";
 
 class MockNavController {
     public pop() {
 
     }
+}
+
+class MockDoseMedicationService {
+
 }
 
 /**
@@ -17,8 +22,11 @@ describe("NewDoseMedicationPage", () => {
 
         const mockNavController: NavController = new MockNavController() as NavController;
 
+        const doseMedicationService: DoseMedicationService = new MockDoseMedicationService() as DoseMedicationService;
+
         const newDoseMedicationPage: NewDoseMedicationPage = new NewDoseMedicationPage(
-            mockNavController
+            mockNavController,
+            doseMedicationService
         );
 
         return newDoseMedicationPage.ngOnInit().then(

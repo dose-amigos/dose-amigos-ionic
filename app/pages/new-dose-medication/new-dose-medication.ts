@@ -42,7 +42,6 @@ export class NewDoseMedicationPage implements OnInit {
     }
 
     public onSubmit(): Promise<DoseMedication> {
-    
         if (this.everyday) {
             this.doseSeries.daysOfWeek = [1, 2, 3, 4, 5, 6, 7];
         } else {
