@@ -32,9 +32,7 @@ export class DosePage implements OnInit {
     }
 
     public ngOnInit(): any {
-
-        //can i set the date from here?
-
+        
         return this.doseEventService.list().then(
             doseEvents => {
                 this.doseEvents = doseEvents;
