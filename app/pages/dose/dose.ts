@@ -22,6 +22,7 @@ export class DosePage implements OnInit {
 
     public title: string = "Dose";
     public doseEvents: Array<DoseEvent> = [];
+    public currentDate: Date = new Date();
 
     constructor(
         private doseEventService: DoseEventService,
@@ -32,11 +33,31 @@ export class DosePage implements OnInit {
 
     public ngOnInit(): any {
 
+        //can i set the date from here?
+
         return this.doseEventService.list().then(
             doseEvents => {
                 this.doseEvents = doseEvents;
             }
         );
 
+    }
+
+    public loadNext() {
+
+        return this.doseEventService.loadPage(this.currentDate, "next").then(
+            doseEvents => {
+                this.doseEvents = doseEvents;
+            }
+        );
+    }
+
+    public loadPrev() {
+
+        return this.doseEventService.loadPage(this.currentDate, "prev").then(
+            doseEvents => {
+                this.doseEvents = doseEvents;
+            }
+        );
     }
 }
