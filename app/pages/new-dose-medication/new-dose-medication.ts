@@ -3,12 +3,15 @@ import {Component, OnInit} from "@angular/core";
 import {DoseMedication} from "../../dose-medication/dose-medication";
 import {DoseSeries} from "../../dose-series/dose-series";
 import {NavController} from "ionic-angular/index";
+import {LogonPanelComponent} from "../../logon-panel-component/logon-panel.component";
+import {DoseMedicationService} from "../../dose-medication-service/dose-medication.service";
 
 @Component(
     {
         templateUrl: "build/pages/new-dose-medication/new-dose-medication.html",
         directives: [
-            DoseAmigosToolbar
+            DoseAmigosToolbar,
+            LogonPanelComponent
         ]
     }
 )
@@ -20,7 +23,8 @@ export class NewDoseMedicationPage implements OnInit {
     public doseTime: Date;
 
     constructor(
-        private nav: NavController
+        private nav: NavController,
+        private doseMedicationService: DoseMedicationService
     ) {
 
     }
@@ -37,8 +41,8 @@ export class NewDoseMedicationPage implements OnInit {
         );
     }
 
-    public onSubmit(): DoseSeries {
-        /* Will need to save via service. */
+    public onSubmit(): Promise<DoseMedication> {
+    
         if (this.everyday) {
             this.doseSeries.daysOfWeek = [1, 2, 3, 4, 5, 6, 7];
         } else {
@@ -47,8 +51,13 @@ export class NewDoseMedicationPage implements OnInit {
 
         this.doseSeries.timesOfDay.push(this.doseTime);
 
-        this.nav.pop();
-        return this.doseSeries;
+        return this.doseMedicationService.save(
+            this.doseSeries.med
+        ).then(
+            function () {
+                this.nav.pop();
+            }.bind(this)
+        );
     }
 
     public cancel() {
