@@ -6,7 +6,7 @@
 
     <logon-required>
 
-        <user-status-card [user]="authUser.userInfo"
+        <user-status-card [user]="currentUser"
                           [onClickPage]="userStatusClickPage"></user-status-card>
 
         <feed-event-card *ngFor="let feedEvent of feedEvents"
