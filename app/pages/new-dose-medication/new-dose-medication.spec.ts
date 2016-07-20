@@ -62,8 +62,6 @@ class MockLoadingStatusService {
         return loadingStatus;
     }
 
-}
-
 /**
  * Tests for NewDoseMedicationPage component.
  */

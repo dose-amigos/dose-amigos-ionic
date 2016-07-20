@@ -28,14 +28,10 @@ export class NewDoseMedicationPage implements OnInit {
 
     constructor(
         private nav: NavController,
-<<<<<<< 3600c4709e4ad5b9b5a6811433ac61550eaa1acb
         private doseSeriesService: DoseSeriesService,
         private doseAmigosUserService: DoseAmigosUserService,
         private events: Events,
         private loadingStatusService: LoadingStatusService
-=======
-        private doseMedicationService: DoseMedicationService
->>>>>>> work in progress
     ) {
 
     }
@@ -58,15 +54,10 @@ export class NewDoseMedicationPage implements OnInit {
         );
     }
 
-<<<<<<< 3600c4709e4ad5b9b5a6811433ac61550eaa1acb
     public onSubmit(): any {
 
         const loadingStatus: LoadingStatus = this.loadingStatusService.start(this.nav);
-
-=======
-    public onSubmit(): Promise<DoseMedication> {
-    
->>>>>>> work in progress
+ 
         if (this.everyday) {
             this.doseSeries.daysOfWeek = [1, 2, 3, 4, 5, 6, 7];
         } else {
@@ -77,7 +68,6 @@ export class NewDoseMedicationPage implements OnInit {
             moment(this.doseTime, "h:mm").valueOf()
         );
 
-<<<<<<< 3600c4709e4ad5b9b5a6811433ac61550eaa1acb
         const savePromise = this.doseSeriesService.save(
             this.doseSeries
         ).then(
@@ -104,14 +94,6 @@ export class NewDoseMedicationPage implements OnInit {
             () => {
                 loadingStatus.loading.dismiss();
             }
-=======
-        return this.doseMedicationService.save(
-            this.doseSeries.med
-        ).then(
-            function () {
-                this.nav.pop();
-            }.bind(this)
->>>>>>> work in progress
         );
     }
 
