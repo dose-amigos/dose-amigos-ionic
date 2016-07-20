@@ -26,9 +26,7 @@ export class DosePage implements OnInit {
     constructor(
         private doseEventService: DoseEventService,
         private auth: AuthService
-    ) {
-
-    }
+    ) {}
 
     public ngOnInit(): any {
 

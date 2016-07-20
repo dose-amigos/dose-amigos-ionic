@@ -4,7 +4,8 @@ import {MedListComponenet} from "../../med-list-event/med-list-event.component";
 import {DoseMedication} from "../../dose-medication/dose-medication";
 import {DoseMedicationService} from "../../dose-medication-service/dose-medication.service";
 import {MedListCreateComponent} from "../../med-list-create-component/med-list-create.component";
-
+import {AuthService} from "../../auth-service/auth.service";
+import {LogonPanelComponent} from "../../logon-panel-component/logon-panel.component";
 
 @Component(
     {
@@ -12,6 +13,7 @@ import {MedListCreateComponent} from "../../med-list-create-component/med-list-c
         directives: [
             DoseAmigosToolbar,
             MedListComponenet,
+            LogonPanelComponent,
             MedListCreateComponent
         ]
     }
@@ -22,7 +24,8 @@ export class MedListPage implements OnInit {
     public doseMedications: Array<DoseMedication> = [];
 
     constructor(
-        private doseMedicationService: DoseMedicationService
+        private doseMedicationService: DoseMedicationService,
+        private auth: AuthService
     ) {}
 
     public ngOnInit(): any {
@@ -34,5 +37,4 @@ export class MedListPage implements OnInit {
         );
 
     }
-
 }
