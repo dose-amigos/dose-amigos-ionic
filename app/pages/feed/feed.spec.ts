@@ -3,9 +3,9 @@ import {FeedPage} from "./feed";
 import {FeedEvent} from "../../feed-event/feed-event";
 import {FEED_EVENTS} from "../../feed-event-service/feed-event.mocks";
 import {FeedEventService} from "../../feed-event-service/feed-event-service";
-import {AuthUserService} from "../../auth-user-service/auth-user.service";
-import {CURRENT_AUTH_USER} from "../../auth-user-service/auth-user.mocks";
-import {AuthUser} from "../../auth-user/auth-user";
+import {DoseAmigosUser} from "../../dose-amigos-user/dose-amigos-user";
+import {DOSE_AMIGOS_USERS} from "../../dose-amigos-user-service/dose-amigos-user-mocks";
+import {DoseAmigosUserService} from "../../dose-amigos-user-service/dose-amigos-user.service";
 
 class MockFeedEventService {
 
@@ -17,10 +17,12 @@ class MockFeedEventService {
 
 }
 
-class MockAuthUserService {
+class MockDoseAmigosUserService {
 
-    public get(): AuthUser {
-        return CURRENT_AUTH_USER;
+    public getCurrent(): Promise<DoseAmigosUser> {
+        return Promise.resolve(
+            DOSE_AMIGOS_USERS[0]
+        );
     }
 
 }
@@ -33,11 +35,11 @@ describe("FeedPage", () => {
     it("should get FeedEvents from the service", () => {
 
         const mockFeedEventService: FeedEventService = new MockFeedEventService() as FeedEventService;
-        const mockAuthUserService: AuthUserService = new MockAuthUserService() as AuthUserService;
+        const mockDoseAmigosUserService: DoseAmigosUserService = new MockDoseAmigosUserService() as DoseAmigosUserService;
 
         const feedPage: FeedPage = new FeedPage(
             mockFeedEventService,
-            mockAuthUserService
+            mockDoseAmigosUserService
         );
 
         return feedPage.ngOnInit().then(
@@ -56,11 +58,11 @@ describe("FeedPage", () => {
     it("should have title set", () => {
 
         const mockFeedEventService: FeedEventService = new MockFeedEventService() as FeedEventService;
-        const mockAuthUserService: AuthUserService = new MockAuthUserService() as AuthUserService;
+        const mockDoseAmigosUserService: DoseAmigosUserService = new MockDoseAmigosUserService() as DoseAmigosUserService;
 
         const feedPage: FeedPage = new FeedPage(
             mockFeedEventService,
-            mockAuthUserService
+            mockDoseAmigosUserService
         );
 
         return feedPage.ngOnInit().then(

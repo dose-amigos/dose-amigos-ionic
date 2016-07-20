@@ -5,7 +5,6 @@ import {FeedPage} from "./pages/feed/feed";
 import {FeedEventService} from "./feed-event-service/feed-event-service";
 import {PAGE_LIST} from "./pages/page-list";
 import {Page} from "./pages/page";
-import {AuthUserService} from "./auth-user-service/auth-user.service";
 import {DoseTimeService} from "./dose-time-service/dose-time.service";
 import {DoseAmigosUserService} from "./dose-amigos-user-service/dose-amigos-user.service";
 import {AmigoShareRequestService} from "./amigo-share-request-service/amigo-share-request.service";
@@ -39,7 +38,6 @@ import {AuthHttp, AuthConfig} from "./angular2-jwt";
             ),
             AuthService,
             AmigoShareRequestService,
-            AuthUserService,
             FeedEventService,
             DoseTimeService,
             DoseAmigosUserService,
