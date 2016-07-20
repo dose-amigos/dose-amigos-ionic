@@ -7,6 +7,8 @@ import {MedListCreateComponent} from "../../med-list-create-component/med-list-c
 import {Events, NavController} from "ionic-angular/index";
 import {LoadingStatusService} from "../../loading-status-service/loading-status.service";
 import {LoadingStatus} from "../../loading-status/loading-status";
+import {AuthService} from "../../auth-service/auth.service";
+import {LogonPanelComponent} from "../../logon-panel-component/logon-panel.component";
 
 @Component(
     {
@@ -14,6 +16,7 @@ import {LoadingStatus} from "../../loading-status/loading-status";
         directives: [
             DoseAmigosToolbar,
             MedListComponenet,
+            LogonPanelComponent,
             MedListCreateComponent
         ]
     }
@@ -25,10 +28,15 @@ export class MedListPage implements OnInit {
 
     constructor(
         private doseMedicationService: DoseMedicationService,
+<<<<<<< 51cb538a7472d52f9665ade5679e194c92eb852a
         private events: Events,
         private nav: NavController,
         private loadingStatusService: LoadingStatusService
     ) {
+=======
+        private auth: AuthService
+    ) {}
+>>>>>>> First commit
 
         /* Refresh page data when a new doseSeries is created. */
         events.subscribe(
@@ -70,5 +78,4 @@ export class MedListPage implements OnInit {
     public ngOnInit(): any {
         return this.loadMedicationList();
     }
-
 }
