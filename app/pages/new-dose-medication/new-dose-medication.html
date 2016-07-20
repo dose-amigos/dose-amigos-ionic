@@ -3,112 +3,112 @@
 </ion-header>
 
 <ion-content padding  class="new-dose-medication">
-    <form (ngSubmit)="onSubmit()"
-          #requestForm="ngForm">
-        <ion-list>
-            <ion-item>
-                <ion-label floating>Medication Name</ion-label>
-                <ion-input type="text"
-                           [(ngModel)]="doseSeries.med.name"
-                           required></ion-input>
-            </ion-item>
+    <logon-required>
+
+        <form (ngSubmit)="onSubmit()"
+              #requestForm="ngForm">
+            <ion-list>
+                <ion-item>
+                    <ion-label floating>Medication Name</ion-label>
+                    <ion-input type="text"
+                               [(ngModel)]="doseSeries.med.name"
+                               required></ion-input>
+                </ion-item>
 
 
-            <ion-item>
-                <ion-label floating>Dose Amount</ion-label>
-                <ion-input type="number"
-                           [(ngModel)]="doseSeries.med.doseAmount"
-                           required></ion-input>
-            </ion-item>
+                <ion-item>
+                    <ion-label floating>Dose Amount</ion-label>
+                    <ion-input type="number"
+                               [(ngModel)]="doseSeries.med.doseAmount"
+                               required></ion-input>
+                </ion-item>
 
 
-            <ion-item>
-                <ion-label floating>Dose Units (pills, mg, cc, etc.)</ion-label>
-                <ion-input type="text"
-                           [(ngModel)]="doseSeries.med.doseUnit"></ion-input>
-            </ion-item>
+                <ion-item>
+                    <ion-label floating>Dose Units (pills, mg, cc, etc.)</ion-label>
+                    <ion-input type="text"
+                               [(ngModel)]="doseSeries.med.doseUnit"></ion-input>
+                </ion-item>
 
-            <!--ion-item>
-                <ion-label>Sunday</ion-label>
-                <ion-checkbox checked="false"></ion-checkbox>
-            </ion-item>
+                <!--ion-item>
+                    <ion-label>Sunday</ion-label>
+                    <ion-checkbox checked="false"></ion-checkbox>
+                </ion-item>
 
-            <ion-item>
-                <ion-label>Monday</ion-label>
-                <ion-checkbox checked="false"></ion-checkbox>
-            </ion-item>
+                <ion-item>
+                    <ion-label>Monday</ion-label>
+                    <ion-checkbox checked="false"></ion-checkbox>
+                </ion-item>
 
-            <ion-item>
-                <ion-label>Tuesday</ion-label>
-                <ion-checkbox checked="false"></ion-checkbox>
-            </ion-item>
+                <ion-item>
+                    <ion-label>Tuesday</ion-label>
+                    <ion-checkbox checked="false"></ion-checkbox>
+                </ion-item>
 
-            <ion-item>
-                <ion-label>Wednesday</ion-label>
-                <ion-checkbox checked="false"></ion-checkbox>
-            </ion-item>
+                <ion-item>
+                    <ion-label>Wednesday</ion-label>
+                    <ion-checkbox checked="false"></ion-checkbox>
+                </ion-item>
 
-            <ion-item>
-                <ion-label>Thursday</ion-label>
-                <ion-checkbox checked="false"></ion-checkbox>
-            </ion-item>
+                <ion-item>
+                    <ion-label>Thursday</ion-label>
+                    <ion-checkbox checked="false"></ion-checkbox>
+                </ion-item>
 
-            <ion-item>
-                <ion-label>Friday</ion-label>
-                <ion-checkbox checked="false"></ion-checkbox>
-            </ion-item>
+                <ion-item>
+                    <ion-label>Friday</ion-label>
+                    <ion-checkbox checked="false"></ion-checkbox>
+                </ion-item>
 
-            <ion-item>
-                <ion-label>Saturday</ion-label>
-                <ion-checkbox checked="false"></ion-checkbox>
-            </ion-item-->
+                <ion-item>
+                    <ion-label>Saturday</ion-label>
+                    <ion-checkbox checked="false"></ion-checkbox>
+                </ion-item-->
 
-            <ion-item>
-                <ion-label>Everyday</ion-label>
-                <ion-checkbox [(ngModel)]="everyday"></ion-checkbox>
-            </ion-item>
+                <ion-item>
+                    <ion-label>Everyday</ion-label>
+                    <ion-checkbox [(ngModel)]="everyday"></ion-checkbox>
+                </ion-item>
 
 
-            <!--ion-item *ngFor="let doseTime of doseSeries.timesOfDay">
-                <ion-label>What time?</ion-label>
-                    <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A"
-                                [(ngModel)]="doseTime">
-                    </ion-datetime>
-            </ion-item-->
+                <!--ion-item *ngFor="let doseTime of doseSeries.timesOfDay">
+                    <ion-label>What time?</ion-label>
+                        <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A"
+                                    [(ngModel)]="doseTime">
+                        </ion-datetime>
+                </ion-item-->
 
-            <ion-item>
-                <ion-label>What time?</ion-label>
-                    <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A"
-                                [(ngModel)]="doseTime">
-                    </ion-datetime>
-            </ion-item>
+                <ion-item>
+                    <ion-label>What time?</ion-label>
+                        <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A"
+                                    [(ngModel)]="doseTime">
+                        </ion-datetime>
+                </ion-item>
 
-            <!--ion-item>
-                <button item-right
-                    (click)="newTime()">
-                    + Add time
-                </button>
-            </ion-item-->
-    
-            <ion-item>
-                <button item-right
-                        secondary
-                        (click)="cancel()">
-                    <ion-icon name="close"></ion-icon>
-                    Cancel
-                </button>
+                <!--ion-item>
+                    <button item-right
+                        (click)="newTime()">
+                        + Add time
+                    </button>
+                </ion-item-->
+        
+                <ion-item>
+                    <button item-right
+                            secondary
+                            (click)="cancel()">
+                        <ion-icon name="close"></ion-icon>
+                        Cancel
+                    </button>
 
-                <button item-right
-                        type="submit"
-                        primary
-                        [disabled]="!requestForm.form.valid">
-                    <ion-icon name="add"></ion-icon>
-                    Add Medication
-                </button>
-            </ion-item>
-
-        </ion-list>
-
-    </form>
-
+                    <button item-right
+                            type="submit"
+                            primary
+                            [disabled]="!requestForm.form.valid">
+                        <ion-icon name="add"></ion-icon>
+                        Add Medication
+                    </button>
+                </ion-item>
+            </ion-list>
+        </form>
+    </logon-required>
 </ion-content>
