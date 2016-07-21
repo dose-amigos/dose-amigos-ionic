@@ -10,18 +10,21 @@ export var DOSE_AMIGOS_USERS: Array<DoseAmigosUser> = [
         id: 300,
         name: "Barney Rubble",
         lastTimeDoseTaken: now,
-        nextTimeDoseScheduled: fifteenMinFromNow
+        nextTimeDoseScheduled: fifteenMinFromNow,
+        picture: ""
     },
     {
         id: 200,
         name: "Wilma Flintstone",
         lastTimeDoseTaken: fifteenMinAgo,
-        nextTimeDoseScheduled: now
+        nextTimeDoseScheduled: now,
+        picture: ""
     },
     {
         id: 100,
         name: "Betty Rubble",
         lastTimeDoseTaken: fortyFiveMinAgo,
-        nextTimeDoseScheduled: fifteenMinAgo
+        nextTimeDoseScheduled: fifteenMinAgo,
+        picture: ""
     }
 ];

@@ -3,7 +3,8 @@
     <ion-item>
 
         <ion-avatar item-left>
-            <ion-icon name="person"></ion-icon>
+            <img *ngIf="amigoShareRequest.sharedAmigo.picture" [src]="amigoShareRequest.sharedAmigo.picture">
+            <ion-icon *ngIf="!amigoShareRequest.sharedAmigo.picture" name="person"></ion-icon>
         </ion-avatar>
 
         <h2>{{amigoShareRequest.sharedAmigo.name}}</h2>
