@@ -5,13 +5,13 @@
     <ion-toolbar *ngIf="auth.authenticated()">
         <ion-buttons left>
             <button>
-                <ion-icon name="arrow-back"></ion-icon>
+                <ion-icon name="arrow-back" (click)='loadPrev()'></ion-icon>
             </button>
         </ion-buttons>
-        <ion-title style="text-align:center">8:00 AM</ion-title>
+        <ion-title style="text-align:center" *ngIf="doseEvents[0]">{{doseEvents[0].scheduledDateTime | date:'shortTime' }}</ion-title>
         <ion-buttons right>
             <button>
-                <ion-icon name="arrow-forward"></ion-icon>
+                <ion-icon name="arrow-forward" (click)='loadNext()'></ion-icon>
             </button>
         </ion-buttons>
     </ion-toolbar>

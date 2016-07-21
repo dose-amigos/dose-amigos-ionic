@@ -3,26 +3,24 @@ import {DOSE_MEDICATIONS} from "../dose-medication-service/dose-medication-mocks
 
 const eightAM: Date = new Date();
 eightAM.setHours(8);
-eightAM.setMinutes(0);
 
-
-export var DOSE_EVENTS: Array<DoseEvent> = [
+export var DOSE_EVENTS2: Array<DoseEvent> = [
     {
-        id: 3,
+        id: 6,
         med: DOSE_MEDICATIONS[0],
         scheduledDateTime: eightAM,
         actionDateTime: null,
         action: ""
     },
     {
-        id: 2,
+        id: 5,
         med: DOSE_MEDICATIONS[1],
         scheduledDateTime: eightAM,
         actionDateTime: null,
         action: ""
     },
     {
-        id: 1,
+        id: 4,
         med: DOSE_MEDICATIONS[2],
         scheduledDateTime: eightAM,
         actionDateTime: null,
