@@ -5,14 +5,16 @@ const dinoUser: DoseAmigosUser = {
     id: 9090,
     name: "Dino Flintstone",
     lastTimeDoseTaken: new Date(),
-    nextTimeDoseScheduled: new Date()
+    nextTimeDoseScheduled: new Date(),
+    picture: ""
 };
 
 const pebblesUser: DoseAmigosUser = {
     id: 8080,
     name: "Pebbles Flintstone",
     lastTimeDoseTaken: new Date(),
-    nextTimeDoseScheduled: new Date()
+    nextTimeDoseScheduled: new Date(),
+    picture: ""
 };
 
 export var AMIGO_SHARE_REQUESTS: Array<AmigoShareRequest> = [
