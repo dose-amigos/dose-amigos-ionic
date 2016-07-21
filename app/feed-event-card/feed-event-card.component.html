@@ -3,7 +3,8 @@
     <ion-item>
 
         <ion-avatar item-left>
-            <ion-icon name="person"></ion-icon>
+            <img *ngIf="feedEvent.user.picture" [src]="feedEvent.user.picture">
+            <ion-icon *ngIf="!feedEvent.user.picture" name="person"></ion-icon>
         </ion-avatar>
 
         <h2>{{feedEvent.user.name}}</h2>

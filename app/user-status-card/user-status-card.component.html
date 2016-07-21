@@ -5,7 +5,8 @@
     <ion-item>
 
         <ion-avatar item-left>
-            <ion-icon name="person"></ion-icon>
+            <img *ngIf="user.picture" [src]="user.picture">
+            <ion-icon *ngIf="!user.picture" name="person"></ion-icon>
         </ion-avatar>
 
         <h2>{{user.name}}</h2>
