@@ -54,7 +54,7 @@ describe("MedListPage", () => {
                 expect(
                     medListPage.title
                 ).toEqual(
-                    "My Medications",
+                    "Medications",
                     "should have title set"
                 );
             }

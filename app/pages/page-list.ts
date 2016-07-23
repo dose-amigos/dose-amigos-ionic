@@ -4,7 +4,6 @@ import {AmigosPage} from "./amigos/amigos";
 import {DosePage} from "./dose/dose";
 import {AmigoRequestsPage} from "./amigo-requests/amigo-requests";
 import {ProfilePage} from "./profile/profile";
-import {TestingPage} from "./testing/testing";
 import {MedListPage} from "./med-list/med-list";
 
 
@@ -20,7 +19,7 @@ export var PAGE_LIST: Array<Page> = [
     {
         title: "Dose",
         component: DosePage,
-        icon: "medkit"
+        icon: "time"
     },
     {
         title: "Amigos",
@@ -34,14 +33,9 @@ export var PAGE_LIST: Array<Page> = [
     },
     {
 
-        title: "My Medications",
+        title: "Medications",
         component: MedListPage,
         icon: "medkit"
-    },
-    {
-        title: "Testing",
-        component: TestingPage,
-        icon: "checkmark"
     },
     {
         title: "Log out",
