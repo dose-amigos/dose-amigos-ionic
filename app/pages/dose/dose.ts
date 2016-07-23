@@ -22,6 +22,7 @@ export class DosePage implements OnInit {
 
     public title: string = "Dose";
     public doseEvents: Array<DoseEvent> = [];
+    public currentDate: Date;
 
     constructor(
         private doseEventService: DoseEventService,
@@ -30,13 +31,40 @@ export class DosePage implements OnInit {
 
     }
 
+    private updateDoseEvents(
+        doseEvents: Array<DoseEvent>
+    ) {
+        this.doseEvents = doseEvents;
+        if (doseEvents.length) {
+            this.currentDate = doseEvents[0].scheduledDateTime;
+        }
+    }
+
     public ngOnInit(): any {
 
         return this.doseEventService.list().then(
             doseEvents => {
-                this.doseEvents = doseEvents;
+                this.updateDoseEvents(doseEvents);
             }
         );
 
     }
+
+    public loadNext = () => {
+
+        return this.doseEventService.loadPage(this.currentDate, "next").then(
+            doseEvents => {
+                this.updateDoseEvents(doseEvents);
+            }
+        );
+    };
+
+    public loadPrev = () => {
+
+        return this.doseEventService.loadPage(this.currentDate, "prev").then(
+            doseEvents => {
+                this.updateDoseEvents(doseEvents);
+            }
+        );
+    };
 }

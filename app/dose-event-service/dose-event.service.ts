@@ -1,6 +1,8 @@
 import {Injectable} from "@angular/core";
 import {DoseEvent} from "../dose-event/dose-event";
 import {DOSE_EVENTS} from "./dose-event-mocks";
+import {DOSE_EVENTS2} from "./dose-event-mocks-two";
+import {DOSE_EVENTS3} from "./dose-event-mocks-three";
 
 /**
  * Service for fetching and saving DoseEvent instances.
@@ -30,6 +32,22 @@ export class DoseEventService {
             DOSE_EVENTS.filter(
                 (doseEvent) => doseEvent.id === id
             )[0]
+        );
+    }
+
+    public loadPage(startAt: Date, dir: string): Promise<Array<DoseEvent>> {
+
+        let doseEvents: Array<DoseEvent>;
+
+        if (dir === "next") {
+            doseEvents = DOSE_EVENTS2;
+
+        } else {
+            doseEvents = DOSE_EVENTS3;
+        }
+
+        return Promise.resolve(
+            doseEvents
         );
     }
 
