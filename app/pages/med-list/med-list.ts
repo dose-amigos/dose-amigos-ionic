@@ -18,7 +18,7 @@ import {MedListCreateComponent} from "../../med-list-create-component/med-list-c
 )
 export class MedListPage implements OnInit {
 
-    public title: string = "My Medications";
+    public title: string = "Medications";
     public doseMedications: Array<DoseMedication> = [];
 
     constructor(
