@@ -8,6 +8,6 @@ export class DoseSeries {
     id: number;
     med: DoseMedication;
     daysOfWeek: Array<number>;
-    timesOfDay: Array<Date>;
+    timesOfDay: Array<number>; /* [ Date.getTime() ] */
 
 }
