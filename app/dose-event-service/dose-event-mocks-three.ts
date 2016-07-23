@@ -8,21 +8,21 @@ export var DOSE_EVENTS3: Array<DoseEvent> = [
     {
         id: 91,
         med: DOSE_MEDICATIONS[2],
-        scheduledDateTime: eightAM,
+        scheduledDateTime: eightAM.getTime(),
         actionDateTime: null,
         action: ""
     },
     {
         id: 92,
         med: DOSE_MEDICATIONS[1],
-        scheduledDateTime: eightAM,
+        scheduledDateTime: eightAM.getTime(),
         actionDateTime: null,
         action: ""
     },
     {
         id: 93,
         med: DOSE_MEDICATIONS[0],
-        scheduledDateTime: eightAM,
+        scheduledDateTime: eightAM.getTime(),
         actionDateTime: null,
         action: ""
     }

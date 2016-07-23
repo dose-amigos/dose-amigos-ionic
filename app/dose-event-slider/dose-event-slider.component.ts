@@ -1,6 +1,7 @@
 import {Component, Input} from "@angular/core";
 import {DoseEvent} from "../dose-event/dose-event";
 import {ItemSliding} from "ionic-angular/index";
+import {DoseEventService} from "../dose-event-service/dose-event.service";
 
 /**
  * DoseEventSlider for rendering a dose-events.
@@ -17,13 +18,42 @@ export class DoseEventSliderComponent {
     @Input()
     public doseEvent: DoseEvent;
 
+    constructor(
+        private doseEventService: DoseEventService
+    ) {
+    }
+
+    saveChanges() {
+        /*
+         * Ignore server response, just assume it worked.
+         * There is also a timing issue here if the user quickly does multiple actions
+         * and they get out of order in the network.
+         */
+        this.doseEventService.saveList(
+            [
+                this.doseEvent
+            ]
+        );
+    }
+
     takeEvent() {
         this.doseEvent.action = "TAKEN";
+        this.saveChanges();
+    }
+
+    unTakeEvent() {
+        delete(this.doseEvent.action);
+        this.saveChanges();
+    }
+
+    skipEvent() {
+        this.doseEvent.action = "SKIPPED";
+        this.saveChanges();
     }
 
     toggleTaken() {
         if (this.doseEvent.action === "TAKEN") {
-            delete(this.doseEvent.action);
+            this.unTakeEvent();
         } else {
             this.takeEvent();
         }
@@ -34,8 +64,8 @@ export class DoseEventSliderComponent {
         slidingItem.close();
     }
 
-    skipEvent(slidingItem: ItemSliding) {
-        this.doseEvent.action = "SKIPPED";
+    slidingSkipEvent(slidingItem: ItemSliding) {
+        this.skipEvent();
         slidingItem.close();
     }
 

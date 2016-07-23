@@ -13,9 +13,9 @@ export class DoseMedication {
     doseUnit: string;
     totalAmount: number;
     doseInstructions: string;
-    firstTaken: Date;
-    lastDoseTaken: Date;
-    nextScheduledDate: Date;
+    firstTaken: number;
+    lastDoseTaken: number;
+    nextScheduledDate: number;
     active: boolean;
 
 }
