@@ -89,8 +89,8 @@ export class FeedPage implements OnInit {
 
         this.userStatusClickPage = DosePage;
 
-        if(this.auth.authenticated()) {
-            this.loadData();
+        if (this.auth.authenticated()) {
+            return this.loadData();
         }
     }
 
