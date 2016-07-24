@@ -5,6 +5,7 @@ import {AmigoShareRequest} from "../../amigo-share-request/amigo-share-request";
 import {AmigoShareRequestCardComponent} from "../../amigo-share-request-card/amigo-share-request-card.component";
 import {AmigoRequestCreateComponent} from "../../amigo-request-create-component/amigo-request-create.component";
 import {LogonPanelComponent} from "../../logon-panel-component/logon-panel.component";
+import {Events} from "ionic-angular/index";
 
 @Component(
     {
@@ -28,22 +29,39 @@ export class AmigoRequestsPage implements OnInit {
     public decline: (AmigoShareRequest) => void;
 
     constructor(
-        private amigoShareRequestService: AmigoShareRequestService
+        private amigoShareRequestService: AmigoShareRequestService,
+        private events: Events
     ) {
         this.accept = this.acceptAmigoShareRequest.bind(this);
         this.decline = this.declineAmigoShareRequest.bind(this);
+
+        /* Refresh page data when a new request is created. */
+        events.subscribe(
+            "amigoShareRequest:created",
+            () => {
+                this.loadRequests();
+            }
+        );
     }
 
     /**
-     * Initialize the page.
-     * @returns {Promise}
+     * Loads and sets requests.
+     * @returns {any}.
      */
-    public ngOnInit(): any {
+    public loadRequests(): any {
         return this.amigoShareRequestService.list().then(
             amigoShareRequests => {
                 this.amigoShareRequests = amigoShareRequests;
             }
         );
+    }
+
+    /**
+     * Initialize the page.
+     * @returns {Promise}.
+     */
+    public ngOnInit(): any {
+        return this.loadRequests();
     }
 
     private saveAmigoShareRequest(

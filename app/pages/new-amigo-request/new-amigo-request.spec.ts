@@ -1,5 +1,5 @@
 import {it, describe, expect} from "@angular/core/testing";
-import {NavController} from "ionic-angular/index";
+import {NavController, Events} from "ionic-angular/index";
 import {NewAmigoRequestPage} from "./new-amigo-request";
 import {AmigoShareRequestService} from "../../amigo-share-request-service/amigo-share-request.service";
 
@@ -10,6 +10,14 @@ class MockNavController {
 }
 
 class MockAmigoShareRequestService {
+
+}
+
+class MockEvents {
+
+    publish(topic: string, ...args: any[]): any[] {
+        return [];
+    }
 
 }
 
@@ -24,9 +32,12 @@ describe("NewAmigoRequestPage", () => {
 
         const amigoShareRequestService: AmigoShareRequestService = new MockAmigoShareRequestService() as AmigoShareRequestService;
 
+        const mockEvents: Events = new MockEvents() as Events;
+
         const newAmigoRequestPage: NewAmigoRequestPage = new NewAmigoRequestPage(
             mockNavController,
-            amigoShareRequestService
+            amigoShareRequestService,
+            mockEvents
         );
 
         return newAmigoRequestPage.ngOnInit().then(

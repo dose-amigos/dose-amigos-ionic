@@ -1,9 +1,10 @@
-import {Component, OnInit, Type} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {DoseAmigosToolbar} from "../../dose-amigos-toolbar/dose-amigos-toolbar.component";
 import {MedListComponenet} from "../../med-list-event/med-list-event.component";
 import {DoseMedication} from "../../dose-medication/dose-medication";
 import {DoseMedicationService} from "../../dose-medication-service/dose-medication.service";
 import {MedListCreateComponent} from "../../med-list-create-component/med-list-create.component";
+import {Events} from "ionic-angular/index";
 
 
 @Component(
@@ -22,17 +23,30 @@ export class MedListPage implements OnInit {
     public doseMedications: Array<DoseMedication> = [];
 
     constructor(
-        private doseMedicationService: DoseMedicationService
-    ) {}
+        private doseMedicationService: DoseMedicationService,
+        private events: Events
+    ) {
 
-    public ngOnInit(): any {
+        /* Refresh page data when a new doseSeries is created. */
+        events.subscribe(
+            "doseSeries:created",
+            () => {
+                this.loadMedicationList();
+            }
+        );
 
+    }
+
+    public loadMedicationList(): any {
         return this.doseMedicationService.list().then(
             doseMedications => {
                 this.doseMedications = doseMedications;
             }
         );
+    }
 
+    public ngOnInit(): any {
+        return this.loadMedicationList();
     }
 
 }

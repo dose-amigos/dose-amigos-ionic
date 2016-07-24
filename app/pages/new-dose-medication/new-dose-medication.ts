@@ -2,7 +2,7 @@ import {DoseAmigosToolbar} from "../../dose-amigos-toolbar/dose-amigos-toolbar.c
 import {Component, OnInit} from "@angular/core";
 import {DoseMedication} from "../../dose-medication/dose-medication";
 import {DoseSeries} from "../../dose-series/dose-series";
-import {NavController} from "ionic-angular/index";
+import {NavController, Events} from "ionic-angular/index";
 import {DoseSeriesService} from "../../dose-series-service/dose-series.service";
 import * as moment from "moment";
 import {DoseAmigosUserService} from "../../dose-amigos-user-service/dose-amigos-user.service";
@@ -25,7 +25,8 @@ export class NewDoseMedicationPage implements OnInit {
     constructor(
         private nav: NavController,
         private doseSeriesService: DoseSeriesService,
-        private doseAmigosUserService: DoseAmigosUserService
+        private doseAmigosUserService: DoseAmigosUserService,
+        private events: Events
     ) {
 
     }
@@ -48,7 +49,7 @@ export class NewDoseMedicationPage implements OnInit {
         );
     }
 
-    public onSubmit(): Promise<DoseSeries> {
+    public onSubmit(): any {
 
         if (this.everyday) {
             this.doseSeries.daysOfWeek = [1, 2, 3, 4, 5, 6, 7];
@@ -63,10 +64,14 @@ export class NewDoseMedicationPage implements OnInit {
         return this.doseSeriesService.save(
             this.doseSeries
         ).then(
-            (data) => {
-                this.nav.pop();
+            (doseSeries: DoseSeries) => {
 
-                return data;
+                this.events.publish(
+                    "doseSeries:created",
+                    doseSeries as DoseSeries
+                );
+
+                this.nav.pop();
             }
         );
     }

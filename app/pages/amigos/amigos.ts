@@ -6,6 +6,7 @@ import {UserStatusCardComponent} from "../../user-status-card/user-status-card.c
 import {FeedPage} from "../feed/feed";
 import {AmigoRequestCreateComponent} from "../../amigo-request-create-component/amigo-request-create.component";
 import {LogonPanelComponent} from "../../logon-panel-component/logon-panel.component";
+import {Events} from "ionic-angular/index";
 
 @Component(
     {
@@ -25,9 +26,30 @@ export class AmigosPage implements OnInit {
     public userStatusClickPage: Type;
 
     constructor(
-        private doseAmigosUserService: DoseAmigosUserService
+        private doseAmigosUserService: DoseAmigosUserService,
+        private events: Events
     ) {
 
+        /* Refresh page data when a new request is created. */
+        events.subscribe(
+            "amigoShareRequest:created",
+            () => {
+                this.loadUsers();
+            }
+        );
+
+    }
+
+    /**
+     * Loads and sets users.
+     * @returns {any}.
+     */
+    public loadUsers(): any {
+        return this.doseAmigosUserService.list().then(
+            doseAmigosUsers => {
+                this.doseAmigosUsers = doseAmigosUsers;
+            }
+        );
     }
 
     /**
@@ -38,11 +60,7 @@ export class AmigosPage implements OnInit {
 
         this.userStatusClickPage = FeedPage;
 
-        return this.doseAmigosUserService.list().then(
-            doseAmigosUsers => {
-                this.doseAmigosUsers = doseAmigosUsers;
-            }
-        );
+        return this.loadUsers();
     }
 
 }

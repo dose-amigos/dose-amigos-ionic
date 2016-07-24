@@ -3,6 +3,7 @@ import {MedListPage} from "./med-list";
 import {DOSE_MEDICATIONS} from "../../dose-medication-service/dose-medication-mocks";
 import {DoseMedication} from "../../dose-medication/dose-medication";
 import {DoseMedicationService} from "../../dose-medication-service/dose-medication.service";
+import {Events} from "ionic-angular/index";
 
 
 class MockDoseMedicationService {
@@ -11,6 +12,14 @@ class MockDoseMedicationService {
         return Promise.resolve(
             DOSE_MEDICATIONS
         );
+    }
+
+}
+
+class MockEvents {
+
+    subscribe(topic: string, ...handlers: Function[]): void {
+
     }
 
 }
@@ -24,8 +33,11 @@ describe("MedListPage", () => {
 
         const mockDoseMedicationService: DoseMedicationService = new MockDoseMedicationService() as DoseMedicationService;
 
+        const mockEvents: Events = new MockEvents() as Events;
+
         const medListPage: MedListPage = new MedListPage(
-            mockDoseMedicationService
+            mockDoseMedicationService,
+            mockEvents
         );
 
         return medListPage.ngOnInit().then(
@@ -45,8 +57,11 @@ describe("MedListPage", () => {
 
         const mockDoseMedicationService: DoseMedicationService = new MockDoseMedicationService() as DoseMedicationService;
 
+        const mockEvents: Events = new MockEvents() as Events;
+
         const medListPage: MedListPage = new MedListPage(
-            mockDoseMedicationService
+            mockDoseMedicationService,
+            mockEvents
         );
 
         return medListPage.ngOnInit().then(
