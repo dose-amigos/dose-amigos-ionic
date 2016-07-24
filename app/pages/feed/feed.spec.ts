@@ -7,8 +7,9 @@ import {DoseAmigosUser} from "../../dose-amigos-user/dose-amigos-user";
 import {DOSE_AMIGOS_USERS} from "../../dose-amigos-user-service/dose-amigos-user-mocks";
 import {DoseAmigosUserService} from "../../dose-amigos-user-service/dose-amigos-user.service";
 import {LoadingStatus} from "../../loading-status/loading-status";
-import {NavController, Loading} from "ionic-angular/index";
+import {NavController, Loading, Events} from "ionic-angular/index";
 import {LoadingStatusService} from "../../loading-status-service/loading-status.service";
+import {AuthService} from "../../auth-service/auth.service";
 
 class MockFeedEventService {
 
@@ -53,6 +54,22 @@ class MockLoadingStatusService {
 
 }
 
+class MockAuthService {
+
+    authenticated(): boolean {
+        return true;
+    }
+
+}
+
+class MockEvents {
+
+    subscribe(topic: string, ...handlers: Function[]): void {
+
+    }
+
+}
+
 /**
  * Tests for FeedPage component.
  */
@@ -67,11 +84,17 @@ describe("FeedPage", () => {
 
         const mockLoadingStatusService: LoadingStatusService = new MockLoadingStatusService() as LoadingStatusService;
 
+        const mockAuth: AuthService = new MockAuthService() as AuthService;
+
+        const mockEvents: Events = new MockEvents() as Events;
+
         const feedPage: FeedPage = new FeedPage(
             mockFeedEventService,
             mockDoseAmigosUserService,
             mockNav,
-            mockLoadingStatusService
+            mockLoadingStatusService,
+            mockAuth,
+            mockEvents
         );
 
         return feedPage.ngOnInit().then(
@@ -96,11 +119,17 @@ describe("FeedPage", () => {
 
         const mockLoadingStatusService: LoadingStatusService = new MockLoadingStatusService() as LoadingStatusService;
 
+        const mockAuth: AuthService = new MockAuthService() as AuthService;
+
+        const mockEvents: Events = new MockEvents() as Events;
+
         const feedPage: FeedPage = new FeedPage(
             mockFeedEventService,
             mockDoseAmigosUserService,
             mockNav,
-            mockLoadingStatusService
+            mockLoadingStatusService,
+            mockAuth,
+            mockEvents
         );
 
         return feedPage.ngOnInit().then(
