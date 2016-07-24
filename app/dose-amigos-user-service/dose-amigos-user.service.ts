@@ -11,6 +11,9 @@ export class DoseAmigosUserService {
 
     private amigosUsersUrl: string = `${BACKEND_URL}/amigo-users`;
 
+    /* Cached currentUser so we don't have to get from server again. */
+    private currentUser: DoseAmigosUser;
+
     constructor(
         private http: AuthHttp
     ) {
@@ -52,10 +55,24 @@ export class DoseAmigosUserService {
      * @returns {Promise<DoseAmigosUser>}
      */
     public getCurrent(): Promise<DoseAmigosUser> {
+
+        if (this.currentUser) {
+            /* Return cached value. */
+            return Promise.resolve(this.currentUser);
+        }
+
+        /* Get from server. */
         return this.http.get(
             `${this.amigosUsersUrl}/current`
         ).toPromise().then(
-            (response) => response.json()
+            (response) => {
+                let user = response.json();
+
+                /* Cache it for later requests. */
+                this.currentUser = user;
+
+                return user;
+            }
         ).catch(
             this.handleError
         );
