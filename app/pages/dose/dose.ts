@@ -6,6 +6,9 @@ import {DoseEvent} from "../../dose-event/dose-event";
 import {LogonPanelComponent} from "../../logon-panel-component/logon-panel.component";
 import {AuthService} from "../../auth-service/auth.service";
 import {DoseEventFabComponent} from "../../dose-event-fab/dose-event-fab.component";
+import {LoadingStatusService} from "../../loading-status-service/loading-status.service";
+import {NavController} from "ionic-angular/index";
+import {LoadingStatus} from "../../loading-status/loading-status";
 
 @Component(
     {
@@ -26,45 +29,89 @@ export class DosePage implements OnInit {
 
     constructor(
         private doseEventService: DoseEventService,
-        private auth: AuthService
+        private auth: AuthService,
+        private nav: NavController,
+        private loadingStatusService: LoadingStatusService
     ) {
 
     }
 
-    private updateDoseEvents(
+    private updateDoseEvents = (
         doseEvents: Array<DoseEvent>
-    ) {
+    ) => {
         this.doseEvents = doseEvents;
         if (doseEvents.length) {
             this.currentDate = doseEvents[0].scheduledDateTime;
         }
-    }
+    };
 
     public ngOnInit(): any {
-
-        return this.doseEventService.list().then(
-            doseEvents => {
-                this.updateDoseEvents(doseEvents);
-            }
-        );
-
+        return this.loadCurrentList();
     }
 
-    public loadNext = () => {
+    private loadCurrentList = () => {
 
-        return this.doseEventService.loadPage(this.currentDate, "next").then(
-            doseEvents => {
+        const loadingStatus: LoadingStatus = this.loadingStatusService.start(this.nav);
+
+        const listPromise = this.doseEventService.list().then(
+            (doseEvents) => {
                 this.updateDoseEvents(doseEvents);
             }
         );
+
+        /* Wait on request to resolve, and loading mask to display, then stop loading status. */
+        return Promise.all(
+            [
+                listPromise,
+                loadingStatus.displayPromise
+            ]
+        ).then(
+            () => {
+                loadingStatus.loading.dismiss();
+            }
+        ).catch(
+            () => {
+                loadingStatus.loading.dismiss();
+            }
+        );
+    };
+
+    private loadPage = (dir: string) => {
+
+        const loadingStatus: LoadingStatus = this.loadingStatusService.start(this.nav);
+
+        const pagePromise = this.doseEventService.loadPage(
+            this.currentDate,
+            dir
+        ).then(
+            (doseEvents) => {
+                this.updateDoseEvents(doseEvents);
+            }
+        );
+
+        /* Wait on request to resolve, and loading mask to display, then stop loading status. */
+        return Promise.all(
+            [
+                pagePromise,
+                loadingStatus.displayPromise
+            ]
+        ).then(
+            () => {
+                loadingStatus.loading.dismiss();
+            }
+        ).catch(
+            () => {
+                loadingStatus.loading.dismiss();
+            }
+        );
+    };
+
+    public loadNext = () => {
+        return this.loadPage("next");
     };
 
     public loadPrev = () => {
-
-        return this.doseEventService.loadPage(this.currentDate, "prev").then(
-            doseEvents => {
-                this.updateDoseEvents(doseEvents);
-            }
-        );
+        return this.loadPage("prev");
     };
+
 }

@@ -3,7 +3,9 @@ import {MedListPage} from "./med-list";
 import {DOSE_MEDICATIONS} from "../../dose-medication-service/dose-medication-mocks";
 import {DoseMedication} from "../../dose-medication/dose-medication";
 import {DoseMedicationService} from "../../dose-medication-service/dose-medication.service";
-import {Events} from "ionic-angular/index";
+import {Events, NavController, Loading} from "ionic-angular/index";
+import {LoadingStatus} from "../../loading-status/loading-status";
+import {LoadingStatusService} from "../../loading-status-service/loading-status.service";
 
 
 class MockDoseMedicationService {
@@ -24,6 +26,29 @@ class MockEvents {
 
 }
 
+class MockNavController {}
+
+class MockLoading {
+
+    public dismiss() {
+
+    }
+
+}
+
+class MockLoadingStatusService {
+
+    public start(nav: NavController): LoadingStatus {
+        const loadingStatus: LoadingStatus = new LoadingStatus();
+
+        loadingStatus.displayPromise = Promise.resolve();
+        loadingStatus.loading = new MockLoading() as Loading;
+
+        return loadingStatus;
+    }
+
+}
+
 /**
  * Tests for MedListPage component.
  */
@@ -35,9 +60,15 @@ describe("MedListPage", () => {
 
         const mockEvents: Events = new MockEvents() as Events;
 
+        const mockNav: NavController = new MockNavController() as NavController;
+
+        const mockLoadingStatusService: LoadingStatusService = new MockLoadingStatusService() as LoadingStatusService;
+
         const medListPage: MedListPage = new MedListPage(
             mockDoseMedicationService,
-            mockEvents
+            mockEvents,
+            mockNav,
+            mockLoadingStatusService
         );
 
         return medListPage.ngOnInit().then(
@@ -59,9 +90,15 @@ describe("MedListPage", () => {
 
         const mockEvents: Events = new MockEvents() as Events;
 
+        const mockNav: NavController = new MockNavController() as NavController;
+
+        const mockLoadingStatusService: LoadingStatusService = new MockLoadingStatusService() as LoadingStatusService;
+
         const medListPage: MedListPage = new MedListPage(
             mockDoseMedicationService,
-            mockEvents
+            mockEvents,
+            mockNav,
+            mockLoadingStatusService
         );
 
         return medListPage.ngOnInit().then(

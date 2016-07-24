@@ -1,7 +1,9 @@
 import {it, describe, expect} from "@angular/core/testing";
-import {NavController, Events} from "ionic-angular/index";
+import {NavController, Events, Loading} from "ionic-angular/index";
 import {NewAmigoRequestPage} from "./new-amigo-request";
 import {AmigoShareRequestService} from "../../amigo-share-request-service/amigo-share-request.service";
+import {LoadingStatus} from "../../loading-status/loading-status";
+import {LoadingStatusService} from "../../loading-status-service/loading-status.service";
 
 class MockNavController {
     public pop() {
@@ -21,6 +23,27 @@ class MockEvents {
 
 }
 
+class MockLoading {
+
+    public dismiss() {
+
+    }
+
+}
+
+class MockLoadingStatusService {
+
+    public start(nav: NavController): LoadingStatus {
+        const loadingStatus: LoadingStatus = new LoadingStatus();
+
+        loadingStatus.displayPromise = Promise.resolve();
+        loadingStatus.loading = new MockLoading() as Loading;
+
+        return loadingStatus;
+    }
+
+}
+
 /**
  * Tests for NewAmigoRequestPage component.
  */
@@ -34,10 +57,13 @@ describe("NewAmigoRequestPage", () => {
 
         const mockEvents: Events = new MockEvents() as Events;
 
+        const mockLoadingStatusService: LoadingStatusService = new MockLoadingStatusService() as LoadingStatusService;
+
         const newAmigoRequestPage: NewAmigoRequestPage = new NewAmigoRequestPage(
             mockNavController,
             amigoShareRequestService,
-            mockEvents
+            mockEvents,
+            mockLoadingStatusService
         );
 
         return newAmigoRequestPage.ngOnInit().then(
