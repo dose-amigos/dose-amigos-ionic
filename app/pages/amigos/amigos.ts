@@ -6,7 +6,9 @@ import {UserStatusCardComponent} from "../../user-status-card/user-status-card.c
 import {FeedPage} from "../feed/feed";
 import {AmigoRequestCreateComponent} from "../../amigo-request-create-component/amigo-request-create.component";
 import {LogonPanelComponent} from "../../logon-panel-component/logon-panel.component";
-import {Events} from "ionic-angular/index";
+import {Events, NavController} from "ionic-angular/index";
+import {LoadingStatusService} from "../../loading-status-service/loading-status.service";
+import {LoadingStatus} from "../../loading-status/loading-status";
 
 @Component(
     {
@@ -27,7 +29,9 @@ export class AmigosPage implements OnInit {
 
     constructor(
         private doseAmigosUserService: DoseAmigosUserService,
-        private events: Events
+        private events: Events,
+        private nav: NavController,
+        private loadingStatusService: LoadingStatusService
     ) {
 
         /* Refresh page data when a new request is created. */
@@ -45,9 +49,28 @@ export class AmigosPage implements OnInit {
      * @returns {any}.
      */
     public loadUsers(): any {
-        return this.doseAmigosUserService.list().then(
-            doseAmigosUsers => {
+
+        const loadingStatus: LoadingStatus = this.loadingStatusService.start(this.nav);
+
+        const listPromise = this.doseAmigosUserService.list().then(
+            (doseAmigosUsers) => {
                 this.doseAmigosUsers = doseAmigosUsers;
+            }
+        );
+
+        /* Wait on request to resolve, and loading mask to display, then stop loading status. */
+        return Promise.all(
+            [
+                listPromise,
+                loadingStatus.displayPromise
+            ]
+        ).then(
+            () => {
+                loadingStatus.loading.dismiss();
+            }
+        ).catch(
+            () => {
+                loadingStatus.loading.dismiss();
             }
         );
     }

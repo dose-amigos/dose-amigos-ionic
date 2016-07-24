@@ -6,6 +6,9 @@ import {FeedEventService} from "../../feed-event-service/feed-event-service";
 import {DoseAmigosUser} from "../../dose-amigos-user/dose-amigos-user";
 import {DOSE_AMIGOS_USERS} from "../../dose-amigos-user-service/dose-amigos-user-mocks";
 import {DoseAmigosUserService} from "../../dose-amigos-user-service/dose-amigos-user.service";
+import {LoadingStatus} from "../../loading-status/loading-status";
+import {NavController, Loading} from "ionic-angular/index";
+import {LoadingStatusService} from "../../loading-status-service/loading-status.service";
 
 class MockFeedEventService {
 
@@ -27,6 +30,29 @@ class MockDoseAmigosUserService {
 
 }
 
+class MockNavController {}
+
+class MockLoading {
+
+    public dismiss() {
+
+    }
+
+}
+
+class MockLoadingStatusService {
+
+    public start(nav: NavController): LoadingStatus {
+        const loadingStatus: LoadingStatus = new LoadingStatus();
+
+        loadingStatus.displayPromise = Promise.resolve();
+        loadingStatus.loading = new MockLoading() as Loading;
+
+        return loadingStatus;
+    }
+
+}
+
 /**
  * Tests for FeedPage component.
  */
@@ -37,9 +63,15 @@ describe("FeedPage", () => {
         const mockFeedEventService: FeedEventService = new MockFeedEventService() as FeedEventService;
         const mockDoseAmigosUserService: DoseAmigosUserService = new MockDoseAmigosUserService() as DoseAmigosUserService;
 
+        const mockNav: NavController = new MockNavController() as NavController;
+
+        const mockLoadingStatusService: LoadingStatusService = new MockLoadingStatusService() as LoadingStatusService;
+
         const feedPage: FeedPage = new FeedPage(
             mockFeedEventService,
-            mockDoseAmigosUserService
+            mockDoseAmigosUserService,
+            mockNav,
+            mockLoadingStatusService
         );
 
         return feedPage.ngOnInit().then(
@@ -60,9 +92,15 @@ describe("FeedPage", () => {
         const mockFeedEventService: FeedEventService = new MockFeedEventService() as FeedEventService;
         const mockDoseAmigosUserService: DoseAmigosUserService = new MockDoseAmigosUserService() as DoseAmigosUserService;
 
+        const mockNav: NavController = new MockNavController() as NavController;
+
+        const mockLoadingStatusService: LoadingStatusService = new MockLoadingStatusService() as LoadingStatusService;
+
         const feedPage: FeedPage = new FeedPage(
             mockFeedEventService,
-            mockDoseAmigosUserService
+            mockDoseAmigosUserService,
+            mockNav,
+            mockLoadingStatusService
         );
 
         return feedPage.ngOnInit().then(

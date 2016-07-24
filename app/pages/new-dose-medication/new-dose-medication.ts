@@ -6,6 +6,8 @@ import {NavController, Events} from "ionic-angular/index";
 import {DoseSeriesService} from "../../dose-series-service/dose-series.service";
 import * as moment from "moment";
 import {DoseAmigosUserService} from "../../dose-amigos-user-service/dose-amigos-user.service";
+import {LoadingStatus} from "../../loading-status/loading-status";
+import {LoadingStatusService} from "../../loading-status-service/loading-status.service";
 
 @Component(
     {
@@ -26,7 +28,8 @@ export class NewDoseMedicationPage implements OnInit {
         private nav: NavController,
         private doseSeriesService: DoseSeriesService,
         private doseAmigosUserService: DoseAmigosUserService,
-        private events: Events
+        private events: Events,
+        private loadingStatusService: LoadingStatusService
     ) {
 
     }
@@ -51,6 +54,8 @@ export class NewDoseMedicationPage implements OnInit {
 
     public onSubmit(): any {
 
+        const loadingStatus: LoadingStatus = this.loadingStatusService.start(this.nav);
+
         if (this.everyday) {
             this.doseSeries.daysOfWeek = [1, 2, 3, 4, 5, 6, 7];
         } else {
@@ -61,17 +66,31 @@ export class NewDoseMedicationPage implements OnInit {
             moment(this.doseTime, "h:mm").valueOf()
         );
 
-        return this.doseSeriesService.save(
+        const savePromise = this.doseSeriesService.save(
             this.doseSeries
         ).then(
             (doseSeries: DoseSeries) => {
-
                 this.events.publish(
                     "doseSeries:created",
                     doseSeries as DoseSeries
                 );
+            }
+        );
 
+        /* Wait on request to resolve, and loading mask to display, then stop loading status. */
+        return Promise.all(
+            [
+                savePromise,
+                loadingStatus.displayPromise
+            ]
+        ).then(
+            () => {
+                loadingStatus.loading.dismiss();
                 this.nav.pop();
+            }
+        ).catch(
+            () => {
+                loadingStatus.loading.dismiss();
             }
         );
     }

@@ -15,6 +15,7 @@ import {AuthService} from "./auth-service/auth.service";
 import "./rxjs-operators";
 import {AuthHttp, AuthConfig} from "./angular2-jwt";
 import {DoseSeriesService} from "./dose-series-service/dose-series.service";
+import {LoadingStatusService} from "./loading-status-service/loading-status.service";
 
 /**
  * DoseAmigosApp component for initializing app and routes.
@@ -44,7 +45,8 @@ import {DoseSeriesService} from "./dose-series-service/dose-series.service";
             DoseAmigosUserService,
             DoseEventService,
             DoseSeriesService,
-            DoseMedicationService
+            DoseMedicationService,
+            LoadingStatusService
         ]
     }
 )

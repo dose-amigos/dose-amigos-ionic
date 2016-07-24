@@ -3,7 +3,9 @@ import {AmigosPage} from "./amigos";
 import {DoseAmigosUser} from "../../dose-amigos-user/dose-amigos-user";
 import {DOSE_AMIGOS_USERS} from "../../dose-amigos-user-service/dose-amigos-user-mocks";
 import {DoseAmigosUserService} from "../../dose-amigos-user-service/dose-amigos-user.service";
-import {Events} from "ionic-angular/index";
+import {Events, NavController, Loading} from "ionic-angular/index";
+import {LoadingStatusService} from "../../loading-status-service/loading-status.service";
+import {LoadingStatus} from "../../loading-status/loading-status";
 
 class MockDoseAmigosUserService {
 
@@ -23,6 +25,29 @@ class MockEvents {
 
 }
 
+class MockNavController {}
+
+class MockLoading {
+
+    public dismiss() {
+
+    }
+
+}
+
+class MockLoadingStatusService {
+
+    public start(nav: NavController): LoadingStatus {
+        const loadingStatus: LoadingStatus = new LoadingStatus();
+
+        loadingStatus.displayPromise = Promise.resolve();
+        loadingStatus.loading = new MockLoading() as Loading;
+
+        return loadingStatus;
+    }
+
+}
+
 /**
  * Tests for AmigoPage component.
  */
@@ -34,9 +59,15 @@ describe("AmigoPage", () => {
 
         const mockEvents: Events = new MockEvents() as Events;
 
+        const mockNav: NavController = new MockNavController() as NavController;
+
+        const mockLoadingStatusService: LoadingStatusService = new MockLoadingStatusService() as LoadingStatusService;
+
         const amigosPage: AmigosPage = new AmigosPage(
             mockDoseAmigosUserService,
-            mockEvents
+            mockEvents,
+            mockNav,
+            mockLoadingStatusService
         );
 
         return amigosPage.ngOnInit().then(
@@ -58,9 +89,15 @@ describe("AmigoPage", () => {
 
         const mockEvents: Events = new MockEvents() as Events;
 
+        const mockNav: NavController = new MockNavController() as NavController;
+
+        const mockLoadingStatusService: LoadingStatusService = new MockLoadingStatusService() as LoadingStatusService;
+
         const amigosPage: AmigosPage = new AmigosPage(
             mockDoseAmigosUserService,
-            mockEvents
+            mockEvents,
+            mockNav,
+            mockLoadingStatusService
         );
 
         return amigosPage.ngOnInit().then(

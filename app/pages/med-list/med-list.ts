@@ -4,8 +4,9 @@ import {MedListComponenet} from "../../med-list-event/med-list-event.component";
 import {DoseMedication} from "../../dose-medication/dose-medication";
 import {DoseMedicationService} from "../../dose-medication-service/dose-medication.service";
 import {MedListCreateComponent} from "../../med-list-create-component/med-list-create.component";
-import {Events} from "ionic-angular/index";
-
+import {Events, NavController} from "ionic-angular/index";
+import {LoadingStatusService} from "../../loading-status-service/loading-status.service";
+import {LoadingStatus} from "../../loading-status/loading-status";
 
 @Component(
     {
@@ -24,7 +25,9 @@ export class MedListPage implements OnInit {
 
     constructor(
         private doseMedicationService: DoseMedicationService,
-        private events: Events
+        private events: Events,
+        private nav: NavController,
+        private loadingStatusService: LoadingStatusService
     ) {
 
         /* Refresh page data when a new doseSeries is created. */
@@ -37,13 +40,32 @@ export class MedListPage implements OnInit {
 
     }
 
-    public loadMedicationList(): any {
-        return this.doseMedicationService.list().then(
-            doseMedications => {
+    public loadMedicationList = (): any => {
+
+        const loadingStatus: LoadingStatus = this.loadingStatusService.start(this.nav);
+
+        const listPromise = this.doseMedicationService.list().then(
+            (doseMedications) => {
                 this.doseMedications = doseMedications;
             }
         );
-    }
+
+        /* Wait on request to resolve, and loading mask to display, then stop loading status. */
+        return Promise.all(
+            [
+                listPromise,
+                loadingStatus.displayPromise
+            ]
+        ).then(
+            () => {
+                loadingStatus.loading.dismiss();
+            }
+        ).catch(
+            () => {
+                loadingStatus.loading.dismiss();
+            }
+        );
+    };
 
     public ngOnInit(): any {
         return this.loadMedicationList();
