@@ -1,0 +1,11 @@
+.feed-event-action {
+  font-weight: bold;
+}
+
+.feed-event-missed {
+  color: color($colors, danger);
+}
+
+.feed-event-taken {
+  color: color($colors, success);
+}
