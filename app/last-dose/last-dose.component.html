@@ -1,6 +1,20 @@
-<span class="last-dose">
-    <ion-icon name="checkmark"></ion-icon>
+<span [class.last-dose]="doseTime">
+
+    <ion-icon *ngIf="doseTime"
+              name="checkmark"></ion-icon>
+
+    <ion-icon *ngIf="!doseTime"
+              name="time"></ion-icon>
+
     Last Dose:
-    {{doseTime | date:'shortDate'}}
-    {{doseTime | date:'shortTime'}}
+
+    <span *ngIf="doseTime">
+        {{doseTime | date:'shortDate'}}
+        {{doseTime | date:'shortTime'}}
+    </span>
+
+    <span *ngIf="!doseTime">
+        N/A
+    </span>
+
 </span>

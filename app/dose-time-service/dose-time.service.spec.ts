@@ -17,7 +17,7 @@ describe("DoseTimeService", () => {
 
             expect(
                 doseTimeService.isOverdue(
-                    doseTime
+                    doseTime.getTime()
                 )
             ).toEqual(
                 true,
@@ -37,7 +37,7 @@ describe("DoseTimeService", () => {
 
             expect(
                 doseTimeService.isOverdue(
-                    doseTime
+                    doseTime.getTime()
                 )
             ).toEqual(
                 false,

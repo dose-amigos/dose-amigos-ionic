@@ -12,10 +12,10 @@ export class DoseTimeService {
      * @returns {boolean} true iff due now or in the past.
      */
     public isOverdue(
-        doseTime: Date
+        doseTime: number
     ): boolean {
         /* If now is larger, then doseTime is in past. */
-        return doseTime <= new Date();
+        return doseTime <= new Date().getTime();
     }
 
 }

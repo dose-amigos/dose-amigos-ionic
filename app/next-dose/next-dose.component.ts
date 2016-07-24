@@ -13,7 +13,7 @@ import {DoseTimeService} from "../dose-time-service/dose-time.service";
 export class NextDoseComponent {
 
     @Input()
-    public doseTime: Date;
+    public doseTime: number;
 
     constructor(
         public doseTimeService: DoseTimeService
@@ -25,6 +25,11 @@ export class NextDoseComponent {
      * @returns {boolean} overdue.
      */
     public isOverdue(): boolean {
+
+        if (!this.doseTime) {
+            return false;
+        }
+
         return this.doseTimeService.isOverdue(
             this.doseTime
         );

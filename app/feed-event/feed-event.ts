@@ -7,6 +7,6 @@ export class FeedEvent {
 
     id: number;
     user: DoseAmigosUser;
-    actionDateTime: Date;
+    actionDateTime: number;
     action: String;
 }
