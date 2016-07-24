@@ -9,8 +9,9 @@ import {LogonPanelComponent} from "../../logon-panel-component/logon-panel.compo
 import {DoseAmigosUser} from "../../dose-amigos-user/dose-amigos-user";
 import {DoseAmigosUserService} from "../../dose-amigos-user-service/dose-amigos-user.service";
 import {LoadingStatusService} from "../../loading-status-service/loading-status.service";
-import {NavController} from "ionic-angular/index";
+import {NavController, Events} from "ionic-angular/index";
 import {LoadingStatus} from "../../loading-status/loading-status";
+import {AuthService} from "../../auth-service/auth.service";
 
 /**
  * Component that renders the Amigos Feed Page of dose events.
@@ -37,9 +38,17 @@ export class FeedPage implements OnInit {
         private feedEventService: FeedEventService,
         private doseAmigosUserService: DoseAmigosUserService,
         private nav: NavController,
-        private loadingStatusService: LoadingStatusService
+        private loadingStatusService: LoadingStatusService,
+        private auth: AuthService,
+        private events: Events
     ) {
-
+        /* Refresh page data when a user logs in. */
+        events.subscribe(
+            "user:authenticated",
+            () => {
+                this.loadData();
+            }
+        );
     }
 
     public loadData(): any {
@@ -80,7 +89,9 @@ export class FeedPage implements OnInit {
 
         this.userStatusClickPage = DosePage;
 
-        return this.loadData();
+        if(this.auth.authenticated()) {
+            this.loadData();
+        }
     }
 
 }

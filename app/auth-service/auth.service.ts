@@ -1,4 +1,4 @@
-import {Storage, LocalStorage} from "ionic-angular";
+import {Storage, LocalStorage, Events} from "ionic-angular";
 import {Injectable, NgZone} from "@angular/core";
 import {Observable} from "rxjs/Rx";
 import "../rxjs-operators";
@@ -22,7 +22,8 @@ export class AuthService {
 
     constructor(
         private authHttp: AuthHttp,
-        private zoneImpl: NgZone
+        private zoneImpl: NgZone,
+        private events: Events
     ) {
 
         this.lock = new Auth0Lock(
@@ -64,6 +65,11 @@ export class AuthService {
                 this.zoneImpl.run(() => this.user = profile);
                 // Schedule a token refresh
                 this.scheduleRefresh();
+
+                /* Fire logon event. */
+                this.events.publish(
+                    "user:authenticated"
+                );
             }
         );
     }
