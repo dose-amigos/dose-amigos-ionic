@@ -12,6 +12,6 @@ import {Component, Input} from "@angular/core";
 export class LastDoseComponent {
 
     @Input()
-    public doseTime: Date;
+    public doseTime: number;
 
 }

@@ -13,8 +13,16 @@
 
     <span>
         Next Dose:
-        {{doseTime | date:'shortDate'}}
-        {{doseTime | date:'shortTime'}}
+
+        <span *ngIf="doseTime">
+            {{doseTime | date:'shortDate'}}
+            {{doseTime | date:'shortTime'}}
+        </span>
+
+        <span *ngIf="!doseTime">
+            N/A
+        </span>
+
     </span>
 
     <span *ngIf="isOverdue()">

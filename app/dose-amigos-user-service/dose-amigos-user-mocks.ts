@@ -9,22 +9,22 @@ export var DOSE_AMIGOS_USERS: Array<DoseAmigosUser> = [
     {
         id: 300,
         name: "Barney Rubble",
-        lastTimeDoseTaken: now,
-        nextTimeDoseScheduled: fifteenMinFromNow,
+        lastTimeDoseTaken: now.getTime(),
+        nextTimeDoseScheduled: fifteenMinFromNow.getTime(),
         picture: ""
     },
     {
         id: 200,
         name: "Wilma Flintstone",
-        lastTimeDoseTaken: fifteenMinAgo,
-        nextTimeDoseScheduled: now,
+        lastTimeDoseTaken: fifteenMinAgo.getTime(),
+        nextTimeDoseScheduled: now.getTime(),
         picture: ""
     },
     {
         id: 100,
         name: "Betty Rubble",
-        lastTimeDoseTaken: fortyFiveMinAgo,
-        nextTimeDoseScheduled: fifteenMinAgo,
+        lastTimeDoseTaken: fortyFiveMinAgo.getTime(),
+        nextTimeDoseScheduled: fifteenMinAgo.getTime(),
         picture: ""
     }
 ];

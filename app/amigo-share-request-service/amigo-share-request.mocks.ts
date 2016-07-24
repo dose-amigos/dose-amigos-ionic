@@ -4,16 +4,16 @@ import {DoseAmigosUser} from "../dose-amigos-user/dose-amigos-user";
 const dinoUser: DoseAmigosUser = {
     id: 9090,
     name: "Dino Flintstone",
-    lastTimeDoseTaken: new Date(),
-    nextTimeDoseScheduled: new Date(),
+    lastTimeDoseTaken: new Date().getTime(),
+    nextTimeDoseScheduled: new Date().getTime(),
     picture: ""
 };
 
 const pebblesUser: DoseAmigosUser = {
     id: 8080,
     name: "Pebbles Flintstone",
-    lastTimeDoseTaken: new Date(),
-    nextTimeDoseScheduled: new Date(),
+    lastTimeDoseTaken: new Date().getTime(),
+    nextTimeDoseScheduled: new Date().getTime(),
     picture: ""
 };
 
