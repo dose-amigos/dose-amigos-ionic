@@ -1,5 +1,5 @@
 import {it, describe, expect} from "@angular/core/testing";
-import {NavController} from "ionic-angular/index";
+import {NavController, Events} from "ionic-angular/index";
 import {NewDoseMedicationPage} from "./new-dose-medication";
 import {DoseSeriesService} from "../../dose-series-service/dose-series.service";
 import {DoseSeries} from "../../dose-series/dose-series";
@@ -33,6 +33,14 @@ class MockDoseAmigosUserService {
 
 }
 
+class MockEvents {
+
+    publish(topic: string, ...args: any[]): any[] {
+        return [];
+    }
+
+}
+
 /**
  * Tests for NewDoseMedicationPage component.
  */
@@ -46,10 +54,13 @@ describe("NewDoseMedicationPage", () => {
 
         const mockDoseAmigosUserService: DoseAmigosUserService = new MockDoseAmigosUserService() as DoseAmigosUserService;
 
+        const mockEvents: Events = new MockEvents() as Events;
+
         const newDoseMedicationPage: NewDoseMedicationPage = new NewDoseMedicationPage(
             mockNavController,
             mockDoseSeriesService,
-            mockDoseAmigosUserService
+            mockDoseAmigosUserService,
+            mockEvents
         );
 
         return newDoseMedicationPage.ngOnInit().then(

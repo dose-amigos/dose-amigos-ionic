@@ -3,6 +3,7 @@ import {AmigosPage} from "./amigos";
 import {DoseAmigosUser} from "../../dose-amigos-user/dose-amigos-user";
 import {DOSE_AMIGOS_USERS} from "../../dose-amigos-user-service/dose-amigos-user-mocks";
 import {DoseAmigosUserService} from "../../dose-amigos-user-service/dose-amigos-user.service";
+import {Events} from "ionic-angular/index";
 
 class MockDoseAmigosUserService {
 
@@ -10,6 +11,14 @@ class MockDoseAmigosUserService {
         return Promise.resolve(
             DOSE_AMIGOS_USERS
         );
+    }
+
+}
+
+class MockEvents {
+
+    subscribe(topic: string, ...handlers: Function[]): void {
+
     }
 
 }
@@ -23,8 +32,11 @@ describe("AmigoPage", () => {
 
         const mockDoseAmigosUserService: DoseAmigosUserService = new MockDoseAmigosUserService() as DoseAmigosUserService;
 
+        const mockEvents: Events = new MockEvents() as Events;
+
         const amigosPage: AmigosPage = new AmigosPage(
-            mockDoseAmigosUserService
+            mockDoseAmigosUserService,
+            mockEvents
         );
 
         return amigosPage.ngOnInit().then(
@@ -44,8 +56,11 @@ describe("AmigoPage", () => {
 
         const mockDoseAmigosUserService: DoseAmigosUserService = new MockDoseAmigosUserService() as DoseAmigosUserService;
 
+        const mockEvents: Events = new MockEvents() as Events;
+
         const amigosPage: AmigosPage = new AmigosPage(
-            mockDoseAmigosUserService
+            mockDoseAmigosUserService,
+            mockEvents
         );
 
         return amigosPage.ngOnInit().then(

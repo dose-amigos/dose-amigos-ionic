@@ -1,7 +1,7 @@
 import {DoseAmigosToolbar} from "../../dose-amigos-toolbar/dose-amigos-toolbar.component";
 import {Component, OnInit} from "@angular/core";
 import {AmigoShareRequest} from "../../amigo-share-request/amigo-share-request";
-import {NavController} from "ionic-angular/index";
+import {NavController, Events} from "ionic-angular/index";
 import {LogonPanelComponent} from "../../logon-panel-component/logon-panel.component";
 import {AmigoShareRequestService} from "../../amigo-share-request-service/amigo-share-request.service";
 
@@ -22,7 +22,8 @@ export class NewAmigoRequestPage implements OnInit {
 
     constructor(
         private nav: NavController,
-        private amigoShareRequestService: AmigoShareRequestService
+        private amigoShareRequestService: AmigoShareRequestService,
+        private events: Events
     ) {
 
     }
@@ -36,13 +37,19 @@ export class NewAmigoRequestPage implements OnInit {
         );
     }
 
-    public onSubmit(): Promise<AmigoShareRequest> {
+    public onSubmit(): any {
         return this.amigoShareRequestService.save(
             this.amigoShareRequest
         ).then(
-            function () {
+            (amigoShareRequest: AmigoShareRequest) => {
+
+                this.events.publish(
+                    "amigoShareRequest:created",
+                    amigoShareRequest as AmigoShareRequest
+                );
+
                 this.nav.pop();
-            }.bind(this)
+            }
         );
     }
 
