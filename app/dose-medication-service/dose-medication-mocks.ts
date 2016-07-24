@@ -13,8 +13,8 @@ export var DOSE_MEDICATIONS: Array<DoseMedication> = [
         doseUnit: "mg",
         totalAmount: 1,
         doseInstructions: "Twice Daily",
-        firstTaken: now,
-        lastDoseTaken: now,
+        firstTaken: now.getTime(),
+        lastDoseTaken: now.getTime(),
         nextScheduledDate: null,
         active: true
     },
@@ -27,8 +27,8 @@ export var DOSE_MEDICATIONS: Array<DoseMedication> = [
         doseUnit: "mg",
         totalAmount: 1,
         doseInstructions: "Twice Daily",
-        firstTaken: now,
-        lastDoseTaken: now,
+        firstTaken: now.getTime(),
+        lastDoseTaken: now.getTime(),
         nextScheduledDate: null,
         active: true
     },
@@ -41,8 +41,8 @@ export var DOSE_MEDICATIONS: Array<DoseMedication> = [
         doseUnit: "mg",
         totalAmount: 1,
         doseInstructions: "Twice Daily",
-        firstTaken: now,
-        lastDoseTaken: now,
+        firstTaken: now.getTime(),
+        lastDoseTaken: now.getTime(),
         nextScheduledDate: null,
         active: true
     }

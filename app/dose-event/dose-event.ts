@@ -7,7 +7,7 @@ export class DoseEvent {
 
     id: number;
     med: DoseMedication;
-    scheduledDateTime: Date;
-    actionDateTime: Date;
+    scheduledDateTime: number;
+    actionDateTime: number;
     action: String;
 }

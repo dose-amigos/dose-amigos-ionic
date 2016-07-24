@@ -25,7 +25,7 @@ export class DosePage implements OnInit {
 
     public title: string = "Dose";
     public doseEvents: Array<DoseEvent> = [];
-    public currentDate: Date;
+    public currentDate: number;
 
     constructor(
         private doseEventService: DoseEventService,

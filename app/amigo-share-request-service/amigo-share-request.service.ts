@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {AmigoShareRequest} from "../amigo-share-request/amigo-share-request";
 import {BACKEND_URL} from "../backend-config/backend-config";
 import {AuthHttp} from "../angular2-jwt";
-import {Headers} from "@angular/http";
+import {Headers, RequestOptions} from "@angular/http";
 
 /**
  * Service for fetching and saving AmigoShareRequest instances.
@@ -58,12 +58,16 @@ export class AmigoShareRequestService {
             }
         );
 
-        return this.http.post(
-            this.shareRequestsUrl,
-            JSON.stringify(amigoShareRequest),
+        const options = new RequestOptions(
             {
                 headers: headers
             }
+        );
+
+        return this.http.post(
+            this.shareRequestsUrl,
+            JSON.stringify(amigoShareRequest),
+            options
         ).toPromise().then(
             res => res.json()
         ).catch(
@@ -81,12 +85,16 @@ export class AmigoShareRequestService {
             }
         );
 
-        return this.http.put(
-            `${this.shareRequestsUrl}/${amigoShareRequest.id}`,
-            JSON.stringify(amigoShareRequest),
+        const options = new RequestOptions(
             {
                 headers: headers
             }
+        );
+
+        return this.http.put(
+            `${this.shareRequestsUrl}/${amigoShareRequest.id}`,
+            JSON.stringify(amigoShareRequest),
+            options
         ).toPromise().then(
             res => res.json()
         ).catch(

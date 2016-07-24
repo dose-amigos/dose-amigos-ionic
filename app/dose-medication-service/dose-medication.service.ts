@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {DoseMedication} from "../dose-medication/dose-medication";
 import {BACKEND_URL} from "../backend-config/backend-config";
 import {AuthHttp} from "../angular2-jwt";
-import {Headers} from "@angular/http";
+import {Headers, RequestOptions} from "@angular/http";
 
 /**
  * Service for fetching and saving DoseMedication instances.
@@ -63,12 +63,16 @@ export class DoseMedicationService {
             }
         );
 
-        return this.http.post(
-            this.medsUrl,
-            JSON.stringify(doseMedication),
+        const options = new RequestOptions(
             {
                 headers: headers
             }
+        );
+
+        return this.http.post(
+            this.medsUrl,
+            JSON.stringify(doseMedication),
+            options
         ).toPromise().then(
             res => res.json()
         ).catch(
@@ -91,12 +95,16 @@ export class DoseMedicationService {
             }
         );
 
-        return this.http.put(
-            `${this.medsUrl}/${doseMedication.id}`,
-            JSON.stringify(doseMedication),
+        const options = new RequestOptions(
             {
                 headers: headers
             }
+        );
+
+        return this.http.put(
+            `${this.medsUrl}/${doseMedication.id}`,
+            JSON.stringify(doseMedication),
+            options
         ).toPromise().then(
             res => res.json()
         ).catch(
