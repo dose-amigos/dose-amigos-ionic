@@ -18,24 +18,12 @@
 
     <ion-card-content>
         <p>
-            {{feedEvent.user.name}} {{feedEvent.action}}
+            {{feedEvent.user.name}} has
+            <span class="feed-event-action"
+                  [class.feed-event-taken]="feedEvent.action === 'TAKEN'"
+                  [class.feed-event-missed]="feedEvent.action === 'MISSED'">{{feedEvent.action}}</span>
+            a dose of medication.
         </p>
     </ion-card-content>
-
-    <ion-row>
-        <ion-col>
-
-            <button primary clear small>
-                <ion-icon name="thumbs-up"></ion-icon>
-                <div>12 Likes</div>
-            </button>
-
-            <button primary clear small>
-                <ion-icon name="text"></ion-icon>
-                <div>4 Comments</div>
-            </button>
-
-        </ion-col>
-    </ion-row>
 
 </ion-card>
