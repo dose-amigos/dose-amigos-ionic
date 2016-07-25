@@ -1,6 +1,6 @@
 import {it, describe, expect} from "@angular/core/testing";
 import {MedListPage} from "./med-list";
-import {DOSE_MEDICATIONS} from "../../dose-medication-service/dose-medication-mocks";
+import {DOSE_SERIES} from "../../dose-series-service/dose-series-mocks";
 import {DoseSeries} from "../../dose-series/dose-series";
 import {DoseSeriesService} from "../../dose-series-service/dose-series.service";
 import {Events, NavController, Loading} from "ionic-angular/index";
@@ -12,7 +12,7 @@ class MockDoseSeriesService {
 
     list(): Promise<Array<DoseSeries>> {
         return Promise.resolve(
-            DOSE_MEDICATIONS
+            DOSE_SERIES
         );
     }
 
@@ -73,7 +73,7 @@ describe("MedListPage", () => {
                 expect(
                     medListPage.listOfDoseSeries
                 ).toEqual(
-                    DOSE_MEDICATIONS,
+                    DOSE_SERIES,
                     "should get DoseSeries from the service"
                 );
             }
