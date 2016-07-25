@@ -1,5 +1,5 @@
 import {Component, Input} from "@angular/core";
-import {DoseMedication} from "../dose-medication/dose-medication";
+import {DoseSeries} from "../dose-series/dose-series";
 
 /**
  * DoseMedication compoenet for listing medications.
@@ -13,6 +13,6 @@ import {DoseMedication} from "../dose-medication/dose-medication";
 export class MedListComponenet {
 
     @Input()
-    public doseMedication: DoseMedication;
+    public doseSeries: DoseSeries;
 
 }

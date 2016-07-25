@@ -1,8 +1,8 @@
 import {Component, OnInit} from "@angular/core";
 import {DoseAmigosToolbar} from "../../dose-amigos-toolbar/dose-amigos-toolbar.component";
 import {MedListComponenet} from "../../med-list-event/med-list-event.component";
-import {DoseMedication} from "../../dose-medication/dose-medication";
-import {DoseMedicationService} from "../../dose-medication-service/dose-medication.service";
+import {DoseSeries} from "../../dose-series/dose-series";
+import {DoseSeriesService} from "../../dose-series-service/dose-series.service";
 import {MedListCreateComponent} from "../../med-list-create-component/med-list-create.component";
 import {Events, NavController} from "ionic-angular/index";
 import {LoadingStatusService} from "../../loading-status-service/loading-status.service";
@@ -21,10 +21,10 @@ import {LoadingStatus} from "../../loading-status/loading-status";
 export class MedListPage implements OnInit {
 
     public title: string = "Medications";
-    public doseMedications: Array<DoseMedication> = [];
+    public listOfDoseSeries: Array<DoseSeries> = [];
 
     constructor(
-        private doseMedicationService: DoseMedicationService,
+        private doseSeriesService: DoseSeriesService,
         private events: Events,
         private nav: NavController,
         private loadingStatusService: LoadingStatusService
@@ -44,9 +44,9 @@ export class MedListPage implements OnInit {
 
         const loadingStatus: LoadingStatus = this.loadingStatusService.start(this.nav);
 
-        const listPromise = this.doseMedicationService.list().then(
-            (doseMedications) => {
-                this.doseMedications = doseMedications;
+        const listPromise = this.doseSeriesService.list().then(
+            (listOfDoseSeries) => {
+                this.listOfDoseSeries = listOfDoseSeries;
             }
         );
 
