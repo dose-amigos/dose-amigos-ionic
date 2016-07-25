@@ -8,12 +8,14 @@ import * as moment from "moment";
 import {DoseAmigosUserService} from "../../dose-amigos-user-service/dose-amigos-user.service";
 import {LoadingStatus} from "../../loading-status/loading-status";
 import {LoadingStatusService} from "../../loading-status-service/loading-status.service";
+import {LogonPanelComponent} from "../../logon-panel-component/logon-panel.component";
 
 @Component(
     {
         templateUrl: "build/pages/new-dose-medication/new-dose-medication.html",
         directives: [
-            DoseAmigosToolbar
+            DoseAmigosToolbar,
+            LogonPanelComponent
         ]
     }
 )
@@ -55,7 +57,7 @@ export class NewDoseMedicationPage implements OnInit {
     public onSubmit(): any {
 
         const loadingStatus: LoadingStatus = this.loadingStatusService.start(this.nav);
-
+ 
         if (this.everyday) {
             this.doseSeries.daysOfWeek = [1, 2, 3, 4, 5, 6, 7];
         } else {

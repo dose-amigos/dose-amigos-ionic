@@ -6,6 +6,7 @@ import {DoseMedicationService} from "../../dose-medication-service/dose-medicati
 import {Events, NavController, Loading} from "ionic-angular/index";
 import {LoadingStatus} from "../../loading-status/loading-status";
 import {LoadingStatusService} from "../../loading-status-service/loading-status.service";
+import {AuthService} from "../../auth-service/auth.service";
 
 
 class MockDoseMedicationService {
@@ -47,8 +48,6 @@ class MockLoadingStatusService {
         return loadingStatus;
     }
 
-}
-
 /**
  * Tests for MedListPage component.
  */
@@ -57,6 +56,7 @@ describe("MedListPage", () => {
     it("should get DoseMedication from the service", () => {
 
         const mockDoseMedicationService: DoseMedicationService = new MockDoseMedicationService() as DoseMedicationService;
+        const mockAuthService: AuthService = new MockAuthService() as AuthService;
 
         const mockEvents: Events = new MockEvents() as Events;
 
@@ -87,6 +87,7 @@ describe("MedListPage", () => {
     it("should have title set", () => {
 
         const mockDoseMedicationService: DoseMedicationService = new MockDoseMedicationService() as DoseMedicationService;
+        const mockAuthService: AuthService = new MockAuthService() as AuthService;
 
         const mockEvents: Events = new MockEvents() as Events;
 
