@@ -9,7 +9,7 @@
             </button>
         </ion-buttons>
         <ion-title style="text-align:center" *ngIf="doseEvents[0]">
-            {{doseEvents[0].scheduledDateTime | date:'shortTime' }}
+            {{doseEvents[0].scheduledDateTime | date:'medium' }}
         </ion-title>
         <ion-buttons right>
             <button (click)="loadNext()">
