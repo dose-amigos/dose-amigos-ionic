@@ -16,6 +16,8 @@ import "./rxjs-operators";
 import {AuthHttp, AuthConfig} from "./angular2-jwt";
 import {DoseSeriesService} from "./dose-series-service/dose-series.service";
 import {LoadingStatusService} from "./loading-status-service/loading-status.service";
+import {DoseNotifications} from "./dose-notifications/dose-notifications";
+import {DoseEvent} from "./dose-event/dose-event";
 
 /**
  * DoseAmigosApp component for initializing app and routes.
@@ -57,11 +59,14 @@ export class DoseAmigosApp {
 
     pages: Array<Page>;
     rootPage: any = FeedPage;
+    doseEvents: Array<DoseEvent> = [];
 
     constructor(
         private platform: Platform,
         private authHttp: AuthHttp,
-        private auth: AuthService
+        private auth: AuthService,
+        private notification: DoseNotifications,
+        private doseEventService: DoseEventService
     ) {
         this.initializeApp();
 
@@ -86,6 +91,17 @@ export class DoseAmigosApp {
                 // schedule an initial token refresh for when the
                 // token expires
                 this.auth.startupTokenRefresh();
+
+                const doseEventsPromise = this.doseEventService.getAllForWeek().then(
+                    (doseEvents) => {
+                        this.doseEvents = doseEvents;
+                    }
+                );
+
+                for (let event of this.doseEvents) {
+                    this.notification.schedule(event.scheduledDateTime);
+                }
+
             }
         );
     }
