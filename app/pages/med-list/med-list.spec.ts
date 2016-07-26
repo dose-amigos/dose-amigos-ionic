@@ -1,18 +1,18 @@
 import {it, describe, expect} from "@angular/core/testing";
 import {MedListPage} from "./med-list";
-import {DOSE_MEDICATIONS} from "../../dose-medication-service/dose-medication-mocks";
-import {DoseMedication} from "../../dose-medication/dose-medication";
-import {DoseMedicationService} from "../../dose-medication-service/dose-medication.service";
+import {DOSE_SERIES} from "../../dose-series-service/dose-series-mocks";
+import {DoseSeries} from "../../dose-series/dose-series";
+import {DoseSeriesService} from "../../dose-series-service/dose-series.service";
 import {Events, NavController, Loading} from "ionic-angular/index";
 import {LoadingStatus} from "../../loading-status/loading-status";
 import {LoadingStatusService} from "../../loading-status-service/loading-status.service";
 
 
-class MockDoseMedicationService {
+class MockDoseSeriesService {
 
-    list(): Promise<Array<DoseMedication>> {
+    list(): Promise<Array<DoseSeries>> {
         return Promise.resolve(
-            DOSE_MEDICATIONS
+            DOSE_SERIES
         );
     }
 
@@ -54,18 +54,15 @@ class MockLoadingStatusService {
  */
 describe("MedListPage", () => {
 
-    it("should get DoseMedication from the service", () => {
+    it("should get DoseSeries from the service", () => {
 
-        const mockDoseMedicationService: DoseMedicationService = new MockDoseMedicationService() as DoseMedicationService;
-
+        const mockDoseSeriesService: DoseSeriesService = new MockDoseSeriesService() as DoseSeriesService;
         const mockEvents: Events = new MockEvents() as Events;
-
         const mockNav: NavController = new MockNavController() as NavController;
-
         const mockLoadingStatusService: LoadingStatusService = new MockLoadingStatusService() as LoadingStatusService;
 
         const medListPage: MedListPage = new MedListPage(
-            mockDoseMedicationService,
+            mockDoseSeriesService,
             mockEvents,
             mockNav,
             mockLoadingStatusService
@@ -74,10 +71,10 @@ describe("MedListPage", () => {
         return medListPage.ngOnInit().then(
             () => {
                 expect(
-                    medListPage.doseMedications
+                    medListPage.listOfDoseSeries
                 ).toEqual(
-                    DOSE_MEDICATIONS,
-                    "should get DoseMedication from the service"
+                    DOSE_SERIES,
+                    "should get DoseSeries from the service"
                 );
             }
         );
@@ -86,7 +83,7 @@ describe("MedListPage", () => {
 
     it("should have title set", () => {
 
-        const mockDoseMedicationService: DoseMedicationService = new MockDoseMedicationService() as DoseMedicationService;
+        const mockDoseSeriesService: DoseSeriesService = new MockDoseSeriesService() as DoseSeriesService;
 
         const mockEvents: Events = new MockEvents() as Events;
 
@@ -95,7 +92,7 @@ describe("MedListPage", () => {
         const mockLoadingStatusService: LoadingStatusService = new MockLoadingStatusService() as LoadingStatusService;
 
         const medListPage: MedListPage = new MedListPage(
-            mockDoseMedicationService,
+            mockDoseSeriesService,
             mockEvents,
             mockNav,
             mockLoadingStatusService
