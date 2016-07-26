@@ -3,71 +3,57 @@
 </ion-header>
 
 <ion-content padding  class="new-dose-medication">
+
     <form (ngSubmit)="onSubmit()"
           #requestForm="ngForm">
+
         <ion-list>
+
             <ion-item>
-                <ion-label floating>Medication Name</ion-label>
+                <ion-label floating>
+                    Medication Name
+                </ion-label>
                 <ion-input type="text"
                            [(ngModel)]="doseSeries.med.name"
-                           required></ion-input>
+                           required>
+                </ion-input>
             </ion-item>
 
 
             <ion-item>
-                <ion-label floating>Dose Amount</ion-label>
+                <ion-label floating>
+                    Dose Amount
+                </ion-label>
                 <ion-input type="number"
                            [(ngModel)]="doseSeries.med.doseAmount"
-                           required></ion-input>
+                           required>
+                </ion-input>
             </ion-item>
 
 
             <ion-item>
-                <ion-label floating>Dose Units (pills, mg, cc, etc.)</ion-label>
+                <ion-label floating>
+                    Dose Units (pills, mg, cc, etc.)
+                </ion-label>
                 <ion-input type="text"
-                           [(ngModel)]="doseSeries.med.doseUnit"></ion-input>
-            </ion-item>
-
-            <!--ion-item>
-                <ion-label>Sunday</ion-label>
-                <ion-checkbox checked="false"></ion-checkbox>
+                           [(ngModel)]="doseSeries.med.doseUnit">
+                </ion-input>
             </ion-item>
 
             <ion-item>
-                <ion-label>Monday</ion-label>
-                <ion-checkbox checked="false"></ion-checkbox>
+                <ion-label floating>
+                    Days of Week
+                </ion-label>
+                <ion-select [(ngModel)]="doseSeries.daysOfWeek"
+                            multiple="true"
+                            cancelText="Cancel"
+                            okText="Select">
+                    <ion-option *ngFor="let dayOption of daysOfWeekOptions"
+                                [value]="dayOption.value">
+                        {{dayOption.display}}
+                    </ion-option>
+                </ion-select>
             </ion-item>
-
-            <ion-item>
-                <ion-label>Tuesday</ion-label>
-                <ion-checkbox checked="false"></ion-checkbox>
-            </ion-item>
-
-            <ion-item>
-                <ion-label>Wednesday</ion-label>
-                <ion-checkbox checked="false"></ion-checkbox>
-            </ion-item>
-
-            <ion-item>
-                <ion-label>Thursday</ion-label>
-                <ion-checkbox checked="false"></ion-checkbox>
-            </ion-item>
-
-            <ion-item>
-                <ion-label>Friday</ion-label>
-                <ion-checkbox checked="false"></ion-checkbox>
-            </ion-item>
-
-            <ion-item>
-                <ion-label>Saturday</ion-label>
-                <ion-checkbox checked="false"></ion-checkbox>
-            </ion-item-->
-
-            <ion-item>
-                <ion-label>Everyday</ion-label>
-                <ion-checkbox [(ngModel)]="everyday"></ion-checkbox>
-            </ion-item>
-
 
             <!--ion-item *ngFor="let doseTime of doseSeries.timesOfDay">
                 <ion-label>What time?</ion-label>

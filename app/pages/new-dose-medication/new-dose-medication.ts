@@ -8,6 +8,8 @@ import * as moment from "moment";
 import {DoseAmigosUserService} from "../../dose-amigos-user-service/dose-amigos-user.service";
 import {LoadingStatus} from "../../loading-status/loading-status";
 import {LoadingStatusService} from "../../loading-status-service/loading-status.service";
+import {DayOfWeek} from "../../day-of-week/day-of-week";
+import {DAYS_OF_WEEK} from "../../day-of-week/days-of-week";
 
 @Component(
     {
@@ -21,8 +23,8 @@ export class NewDoseMedicationPage implements OnInit {
 
     public title: string = "New Dose Medication";
     public doseSeries: DoseSeries;
-    public everyday: boolean;
     public doseTime: string;
+    public daysOfWeekOptions: Array<DayOfWeek>;
 
     constructor(
         private nav: NavController,
@@ -44,7 +46,9 @@ export class NewDoseMedicationPage implements OnInit {
             }
         );
 
-        this.doseSeries.daysOfWeek = [];
+        this.daysOfWeekOptions = DAYS_OF_WEEK;
+
+        this.doseSeries.daysOfWeek = [1, 2, 3, 4, 5, 6, 7];
         this.doseSeries.timesOfDay = [];
 
         return Promise.resolve(
@@ -56,10 +60,9 @@ export class NewDoseMedicationPage implements OnInit {
 
         const loadingStatus: LoadingStatus = this.loadingStatusService.start(this.nav);
 
-        if (this.everyday) {
+        if (!this.doseSeries.daysOfWeek.length) {
+            /* Default to every day if blank. */
             this.doseSeries.daysOfWeek = [1, 2, 3, 4, 5, 6, 7];
-        } else {
-            this.doseSeries.daysOfWeek = [1];
         }
 
         this.doseSeries.timesOfDay.push(
