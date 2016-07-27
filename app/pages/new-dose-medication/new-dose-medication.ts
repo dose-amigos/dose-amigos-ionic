@@ -23,8 +23,8 @@ export class NewDoseMedicationPage implements OnInit {
 
     public title: string = "New Dose Medication";
     public doseSeries: DoseSeries;
-    public doseTime: string;
     public daysOfWeekOptions: Array<DayOfWeek>;
+    public doseTimeString: string;
 
     constructor(
         private nav: NavController,
@@ -56,6 +56,21 @@ export class NewDoseMedicationPage implements OnInit {
         );
     }
 
+    public addTime() {
+        if (this.doseTimeString) {
+            this.doseSeries.timesOfDay.push(
+                moment(this.doseTimeString, "h:mm").valueOf()
+            );
+        }
+        this.doseTimeString = "";
+    }
+
+    public removeTime() {
+        if (this.doseSeries.timesOfDay.length) {
+            this.doseSeries.timesOfDay.pop();
+        }
+    }
+
     public onSubmit(): any {
 
         const loadingStatus: LoadingStatus = this.loadingStatusService.start(this.nav);
@@ -64,10 +79,6 @@ export class NewDoseMedicationPage implements OnInit {
             /* Default to every day if blank. */
             this.doseSeries.daysOfWeek = [1, 2, 3, 4, 5, 6, 7];
         }
-
-        this.doseSeries.timesOfDay.push(
-            moment(this.doseTime, "h:mm").valueOf()
-        );
 
         const savePromise = this.doseSeriesService.save(
             this.doseSeries
