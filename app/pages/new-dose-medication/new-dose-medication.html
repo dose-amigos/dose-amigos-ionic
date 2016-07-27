@@ -55,41 +55,52 @@
                 </ion-select>
             </ion-item>
 
-            <!--ion-item *ngFor="let doseTime of doseSeries.timesOfDay">
-                <ion-label>What time?</ion-label>
-                    <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A"
-                                [(ngModel)]="doseTime">
-                    </ion-datetime>
-            </ion-item-->
-
             <ion-item>
-                <ion-label>What time?</ion-label>
-                    <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A"
-                                [(ngModel)]="doseTime">
-                    </ion-datetime>
+                <span>What times?</span>
             </ion-item>
 
-            <!--ion-item>
+            <ion-item *ngFor="let timeOfDay of doseSeries.timesOfDay; let isLast = last">
+                <ion-icon item-left name="time"></ion-icon>
+                <span item-left>{{timeOfDay | date:'shortTime'}}</span>
                 <button item-right
-                    (click)="newTime()">
-                    + Add time
+                        *ngIf="isLast"
+                        type="button"
+                        clear small
+                        (click)="removeTime()">
+                    <div>Remove Time</div>
                 </button>
-            </ion-item-->
-    
+            </ion-item>
+
+            <ion-item>
+                <ion-label>Time</ion-label>
+                <ion-datetime displayFormat="h:mm A"
+                              pickerFormat="h mm A"
+                              minuteValues="0,15,30,45"
+                              [(ngModel)]="doseTimeString">
+                </ion-datetime>
+                <button item-right
+                        type="button"
+                        clear small
+                        (click)="addTime()">
+                    <div>Add Time</div>
+                </button>
+            </ion-item>
+
             <ion-item>
                 <button item-right
+                        type="button"
                         secondary
                         (click)="cancel()">
                     <ion-icon name="close"></ion-icon>
-                    Cancel
+                    <div>Cancel</div>
                 </button>
 
                 <button item-right
                         type="submit"
                         primary
-                        [disabled]="!requestForm.form.valid">
+                        [disabled]="!requestForm.form.valid || !doseSeries.timesOfDay.length">
                     <ion-icon name="add"></ion-icon>
-                    Add Medication
+                    <div>Add Medication</div>
                 </button>
             </ion-item>
 
