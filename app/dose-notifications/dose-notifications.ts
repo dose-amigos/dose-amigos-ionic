@@ -1,4 +1,4 @@
-import {LocalNotifications} from 'ionic-native';
+import {LocalNotifications} from "ionic-native";
 
 export class DoseNotifications {
 
@@ -8,7 +8,7 @@ export class DoseNotifications {
      *  @startDate javascript long representing the time to take a medication.
      */
     public schedule(startDate) {
-        var d = new Date(startDate);
+        const d = new Date(startDate);
 
         LocalNotifications.schedule({
             title: "Dose Amigos Reminder",
@@ -17,8 +17,8 @@ export class DoseNotifications {
             sound: null
         });
     }
-    
-    public clearAll(){
+
+    public clearAll() {
         LocalNotifications.clearAll();
     }
 

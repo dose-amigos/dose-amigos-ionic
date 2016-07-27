@@ -61,6 +61,7 @@ export class DoseAmigosApp {
     pages: Array<Page>;
     rootPage: any = FeedPage;
     doseEvents: Array<DoseEvent> = [];
+    nIntervId;
 
     constructor(
         private platform: Platform,
@@ -93,23 +94,37 @@ export class DoseAmigosApp {
                 // token expires
                 this.auth.startupTokenRefresh();
 
-                //clear all previous notifications.
-                this.notification.clearAll();
-
-                //get a list of weekly events
-                const doseEventsPromise = this.doseEventService.getAllForWeek().then(
-                    (doseEvents) => {
-                        this.doseEvents = doseEvents;
-                    }
-                );
-
-                //set notifications for all events  
-                for (let event of this.doseEvents) {
-                    this.notification.schedule(event.scheduledDateTime);
-                }
+                // Notifications are scheduled/rescheduled every 5 minutes
+                this.nIntervId = setInterval(this.scheduleNotifications, 300000);
 
             }
         );
+    }
+
+    private scheduleNotifications() {
+
+        // if user is logged in, clear all notifications
+        // get a current list of doseEvents, and
+        // schedule new notifications
+        if (this.auth.authenticated()) {
+
+            // Clear all previous notifications.
+            this.notification.clearAll();
+
+            // Get a list of weekly events
+            const doseEventsPromise = this.doseEventService.getAllForWeek().then(
+                (doseEvents) => {
+                    this.doseEvents = doseEvents;
+                }
+            );
+
+            // Set notifications for all events
+            for (let event of this.doseEvents) {
+                this.notification.schedule(event.scheduledDateTime);
+            }
+
+        }
+
     }
 
 }
