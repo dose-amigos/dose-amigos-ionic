@@ -48,7 +48,8 @@ import {DoseEvent} from "./dose-event/dose-event";
             DoseEventService,
             DoseSeriesService,
             DoseMedicationService,
-            LoadingStatusService
+            LoadingStatusService,
+            DoseNotifications
         ]
     }
 )
@@ -92,12 +93,17 @@ export class DoseAmigosApp {
                 // token expires
                 this.auth.startupTokenRefresh();
 
+                //clear all previous notifications.
+                this.notification.clearAll();
+
+                //get a list of weekly events
                 const doseEventsPromise = this.doseEventService.getAllForWeek().then(
                     (doseEvents) => {
                         this.doseEvents = doseEvents;
                     }
                 );
 
+                //set notifications for all events  
                 for (let event of this.doseEvents) {
                     this.notification.schedule(event.scheduledDateTime);
                 }

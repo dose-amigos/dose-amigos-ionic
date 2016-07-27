@@ -17,5 +17,9 @@ export class DoseNotifications {
             sound: null
         });
     }
+    
+    public clearAll(){
+        LocalNotifications.clearAll();
+    }
 
 }
