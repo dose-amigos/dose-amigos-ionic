@@ -16,7 +16,7 @@
 
         <div tappable (click)="toggleTaken()">
             <h2>{{doseEvent.med.name}}</h2>
-            <p>50mg Twice Daily</p>
+            <p>{{doseEvent.med.doseAmount}} {{doseEvent.med.doseUnit}}</p>
         </div>
 
         <ion-icon item-right name="arrow-dropleft"></ion-icon>
