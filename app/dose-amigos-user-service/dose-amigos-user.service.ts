@@ -66,6 +66,23 @@ export class DoseAmigosUserService {
     }
 
     /**
+     * Deletes an existing Amigo.
+     * @param doseAmigosUser to delete.
+     * @returns {Promise<DoseAmigosUser>}
+     */
+    public remove(
+        doseAmigosUser: DoseAmigosUser
+    ) {
+        return this.http.delete(
+            `${this.amigosUsersUrl}/${doseAmigosUser.id}`
+        ).toPromise().then(
+            (response) => response.json()
+        ).catch(
+            this.handleError
+        );
+    }
+
+    /**
      * Handles any errors communicating with backend.
      * @param error
      * @returns {Promise<void>|Promise<T>}
