@@ -4,7 +4,7 @@
         <span>Take {{doseSeries.med.doseAmount}} {{doseSeries.med.doseUnit}}</span><span *ngIf="doseSeries.med.doseInstructions">, {{doseSeries.med.doseInstructions}}</span>
     </ion-item>
     <ion-item-options>
-        <button primary (click)="slidingDelete(slidingItem)">
+        <button danger (click)="slidingDelete(slidingItem)">
             <ion-icon name="Delete"></ion-icon>
             Delete
         </button>
