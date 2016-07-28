@@ -49,6 +49,23 @@ export class DoseSeriesService {
     }
 
     /**
+     * Deletes a DoseSeries from the server.
+     * @param id to lookup.
+     * @returns {Promise<DoseSeries>}.
+     */
+    public delete(
+        id: number
+    ): Promise<DoseSeries> {
+        return this.http.delete(
+            `${this.doseSeriesUrl}/${id}`
+        ).toPromise().then(
+            (response) => response.json()
+        ).catch(
+            this.handleError
+        );
+    }
+
+    /**
      * Creates a new DoseSeries object.
      * @param doseSeries to save.
      * @returns {Promise<DoseSeries>}.
