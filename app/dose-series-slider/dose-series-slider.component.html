@@ -1,13 +1,20 @@
 <ion-item-sliding #slidingItem *ngIf="doseSeries">
+
     <ion-item>
         <h2>{{doseSeries.med.name}}</h2>
         <span>Take {{doseSeries.med.doseAmount}} {{doseSeries.med.doseUnit}}</span><span *ngIf="doseSeries.med.doseInstructions">, {{doseSeries.med.doseInstructions}}</span>
     </ion-item>
+
     <ion-item-options>
         <button danger (click)="slidingDelete(slidingItem)">
-            <ion-icon name="Delete"></ion-icon>
-            Delete
+        	<ion-icon name="Delete"></ion-icon>
+            	Delete
+        	</button>
+	<button primary (click)="slidingEdit(slidingItem)">
+            	<ion-icon name="Edit"></ion-icon>
+            	Edit
         </button>
+         
     </ion-item-options>
 
 </ion-item-sliding>
