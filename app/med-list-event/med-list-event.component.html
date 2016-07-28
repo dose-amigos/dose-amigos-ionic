@@ -1,4 +1,32 @@
-<ion-item *ngIf="doseSeries">
-	<h2>{{doseSeries.med.name}}</h2>
-	<p>Take {{doseSeries.med.doseAmount}} {{doseSeries.med.doseUnit}}, {{doseSeries.med.doseInstructions}} </p>
-</ion-item>
+<ion-item-sliding *ngIf="doseSeries">
+
+	<ion-item>
+		<ion-avatar item-left>
+            <ion-icon *ngIf="doseSeries.action === 'TAKEN'"
+                      name="checkmark-circle"
+                      primary></ion-icon>
+
+            <ion-icon *ngIf="doseSeries.action === 'SKIPPED'"
+                      name="notifications-off"
+                      primary></ion-icon>
+        </ion-avatar>
+
+        <div tappable (click)="toggleTaken()">
+            <h2>{{doseSeries.med.name}}</h2>
+			<p>Take {{doseSeries.med.doseAmount}} {{doseSeries.med.doseUnit}}</p>
+		</div>
+		<ion-icon item-right name="arrow-dropleft"></ion-icon>
+    </ion-item>
+
+	<ion-item-options>
+        <button primary (click)="slidingEditEvent(slidingItem)">
+            <ion-icon name="Edit"></ion-icon>
+            Edit
+        </button>
+        <button secondary (click)="slidingDeleteEvent(slidingItem)">
+            <ion-icon name="Delete"></ion-icon>
+            Delete
+        </button>
+    </ion-item-options>
+
+</ion-item-sliding>
