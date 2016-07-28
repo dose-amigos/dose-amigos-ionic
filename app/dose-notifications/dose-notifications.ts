@@ -22,6 +22,8 @@ export class DoseNotificationService {
 
         const startDate = new Date(startTime);
 
+        console.log(startDate);
+
         LocalNotifications.schedule(
             {
                 id: Math.random() * 999999,
@@ -32,7 +34,7 @@ export class DoseNotificationService {
     }
 
     public cancelAll() {
-        LocalNotifications.cancelAll();
+        return LocalNotifications.cancelAll();
     }
 
     public refreshSchedule = () => {
@@ -43,15 +45,18 @@ export class DoseNotificationService {
                 (doseEvents: Array<DoseEvent>) => {
 
                     /* Remove existing. */
-                    this.cancelAll();
-
-                    doseEvents.forEach(
-                        (doseEvent: DoseEvent) => {
-                            this.schedule(
-                                doseEvent.scheduledDateTime
+                    this.cancelAll().then(
+                        () => {
+                            doseEvents.forEach(
+                                (doseEvent: DoseEvent) => {
+                                    this.schedule(
+                                        doseEvent.scheduledDateTime
+                                    );
+                                }
                             );
                         }
                     );
+
                 }
             );
 
