@@ -1,8 +1,9 @@
 import {Component, OnInit} from "@angular/core";
 import {DoseAmigosToolbar} from "../../dose-amigos-toolbar/dose-amigos-toolbar.component";
-import {MedListComponenet} from "../../med-list-event/med-list-event.component";
+import {DoseSeriesSliderComponent} from "../../dose-series-slider/dose-series-slider.component";
 import {DoseSeries} from "../../dose-series/dose-series";
 import {DoseSeriesService} from "../../dose-series-service/dose-series.service";
+
 import {MedListCreateComponent} from "../../med-list-create-component/med-list-create.component";
 import {Events, NavController} from "ionic-angular/index";
 import {LoadingStatusService} from "../../loading-status-service/loading-status.service";
@@ -13,7 +14,7 @@ import {LoadingStatus} from "../../loading-status/loading-status";
         templateUrl: "build/pages/med-list/med-list.html",
         directives: [
             DoseAmigosToolbar,
-            MedListComponenet,
+            DoseSeriesSliderComponent,
             MedListCreateComponent
         ]
     }
@@ -37,6 +38,14 @@ export class MedListPage implements OnInit {
                 this.loadMedicationList();
             }
         );
+
+        events.subscribe(
+            "doseSeries:deleted",
+            () => {
+                this.loadMedicationList();
+            }
+
+        )
 
     }
 
