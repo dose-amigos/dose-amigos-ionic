@@ -33,8 +33,12 @@ export class DoseNotificationService {
         );
     }
 
-    public cancelAll() {
-        return LocalNotifications.cancelAll();
+    public cancelAllScheduled() {
+        return LocalNotifications.getScheduledIds().then(
+            (notificationIds: Array<number>) => {
+                return LocalNotifications.cancel(notificationIds);
+            }
+        );
     }
 
     public refreshSchedule = () => {
@@ -45,7 +49,7 @@ export class DoseNotificationService {
                 (doseEvents: Array<DoseEvent>) => {
 
                     /* Remove existing. */
-                    this.cancelAll().then(
+                    this.cancelAllScheduled().then(
                         () => {
                             doseEvents.forEach(
                                 (doseEvent: DoseEvent) => {
