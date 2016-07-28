@@ -22,11 +22,13 @@ export class DoseNotificationService {
 
         const startDate = new Date(startTime);
 
-        LocalNotifications.schedule({
-            title: "Dose Amigos Reminder",
-            text: "Time to take your medication!",
-            at: startDate
-        });
+        LocalNotifications.schedule(
+            {
+                id: Math.random() * 999999,
+                text: "Time to take your medication!",
+                at: startDate
+            }
+        );
     }
 
     public cancelAll() {
