@@ -45,7 +45,7 @@ export class MedListPage implements OnInit {
                 this.loadMedicationList();
             }
 
-        )
+        );
 
     }
 
