@@ -46,8 +46,8 @@ export class MedListPage implements OnInit {
             }
 
         );
-        
-	events.subscribe(
+
+        events.subscribe(
             "doseSeries:edited",
             () => {
                 this.loadMedicationList();
