@@ -1,25 +1,71 @@
 import {LocalNotifications} from "ionic-native";
+import {Injectable} from "@angular/core";
+import {DoseEventService} from "../dose-event-service/dose-event.service";
+import {AuthService} from "../auth-service/auth.service";
+import {DoseEvent} from "../dose-event/dose-event";
 
-export class DoseNotifications {
+@Injectable()
+export class DoseNotificationService {
+
+    constructor(
+        private doseEventService: DoseEventService,
+        private auth: AuthService
+    ) {
+    }
 
     /**
      *  Method for scheduling a daily local notification.
      *
-     *  @startDate javascript long representing the time to take a medication.
+     *  @startTime javascript long representing the ms time to take a medication.
      */
-    public schedule(startDate) {
-        const d = new Date(startDate);
+    public schedule(startTime) {
+
+        const startDate = new Date(startTime);
 
         LocalNotifications.schedule({
             title: "Dose Amigos Reminder",
             text: "Time to take your medication!",
-            at: new Date(d.getTime()),
-            sound: null
+            at: startDate
         });
     }
 
-    public clearAll() {
-        LocalNotifications.clearAll();
+    public cancelAll() {
+        LocalNotifications.cancelAll();
     }
+
+    public refreshSchedule = () => {
+
+        if (this.auth.authenticated()) {
+
+            this.doseEventService.getAllForWeek().then(
+                (doseEvents: Array<DoseEvent>) => {
+
+                    /* Remove existing. */
+                    this.cancelAll();
+
+                    doseEvents.forEach(
+                        (doseEvent: DoseEvent) => {
+                            this.schedule(
+                                doseEvent.scheduledDateTime
+                            );
+                        }
+                    );
+                }
+            );
+
+        }
+
+    };
+
+    public startRecurringRefresh = () => {
+
+        this.refreshSchedule();
+
+        /* Run every 5 minutes. */
+        setInterval(
+            this.refreshSchedule,
+            300000
+        );
+    };
 
 }

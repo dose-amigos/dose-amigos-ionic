@@ -16,8 +16,7 @@ import "./rxjs-operators";
 import {AuthHttp, AuthConfig} from "./angular2-jwt";
 import {DoseSeriesService} from "./dose-series-service/dose-series.service";
 import {LoadingStatusService} from "./loading-status-service/loading-status.service";
-import {DoseNotifications} from "./dose-notifications/dose-notifications";
-import {DoseEvent} from "./dose-event/dose-event";
+import {DoseNotificationService} from "./dose-notifications/dose-notifications";
 
 /**
  * DoseAmigosApp component for initializing app and routes.
@@ -49,7 +48,7 @@ import {DoseEvent} from "./dose-event/dose-event";
             DoseSeriesService,
             DoseMedicationService,
             LoadingStatusService,
-            DoseNotifications
+            DoseNotificationService
         ]
     }
 )
@@ -60,15 +59,12 @@ export class DoseAmigosApp {
 
     pages: Array<Page>;
     rootPage: any = FeedPage;
-    doseEvents: Array<DoseEvent> = [];
-    nIntervId;
 
     constructor(
         private platform: Platform,
         private authHttp: AuthHttp,
         private auth: AuthService,
-        private notification: DoseNotifications,
-        private doseEventService: DoseEventService
+        private doseNotificationService: DoseNotificationService
     ) {
         this.initializeApp();
 
@@ -94,37 +90,10 @@ export class DoseAmigosApp {
                 // token expires
                 this.auth.startupTokenRefresh();
 
-                // Notifications are scheduled/rescheduled every 5 minutes
-                this.nIntervId = setInterval(this.scheduleNotifications, 300000);
-
+                /* Get DoseEvents in an interval. */
+                this.doseNotificationService.startRecurringRefresh();
             }
         );
-    }
-
-    private scheduleNotifications() {
-
-        // if user is logged in, clear all notifications
-        // get a current list of doseEvents, and
-        // schedule new notifications
-        if (this.auth.authenticated()) {
-
-            // Clear all previous notifications.
-            this.notification.clearAll();
-
-            // Get a list of weekly events
-            const doseEventsPromise = this.doseEventService.getAllForWeek().then(
-                (doseEvents) => {
-                    this.doseEvents = doseEvents;
-                }
-            );
-
-            // Set notifications for all events
-            for (let event of this.doseEvents) {
-                this.notification.schedule(event.scheduledDateTime);
-            }
-
-        }
-
     }
 
 }
