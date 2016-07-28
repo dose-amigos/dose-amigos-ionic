@@ -35,5 +35,18 @@ export class DoseSeriesSliderComponent {
             }
         );
     }
+
+    slidingEdit(slidingItem: ItemSliding) {
+        //redirct to the edit screen
+        this.doseSeriesService.edit(this.doseSeries).then(
+
+            (doseSeries: DoseSeries) => {
+                this.events.publish(
+                    "doseSeries:edited",
+                    doseSeries as DoseSeries
+                );
+            }
+        );
+    }
 }
 

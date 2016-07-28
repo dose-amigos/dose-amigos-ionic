@@ -66,6 +66,17 @@ export class DoseSeriesService {
     }
 
     /**
+     *  Edits a DoseSeries
+     * @param id to lookup.
+     * @returns {Promise<DoseSeries>}.
+     */
+    public edit(
+        doseSeries: DoseSeries
+    ): Promise<DoseSeries> {
+        return this.put(doseSeries);
+    }
+
+    /**
      * Creates a new DoseSeries object.
      * @param doseSeries to save.
      * @returns {Promise<DoseSeries>}.
