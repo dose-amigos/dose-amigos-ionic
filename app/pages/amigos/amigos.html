@@ -8,7 +8,7 @@
 
         <user-status-card *ngFor="let user of doseAmigosUsers"
                           [user]="user"
-                          [onClickPage]="userStatusClickPage"></user-status-card>
+                          [allowDelete]="allowUserDelete"></user-status-card>
 
         <amigo-request-fab></amigo-request-fab>
 

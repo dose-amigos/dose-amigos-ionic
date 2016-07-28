@@ -11,7 +11,8 @@
 
         <h2>{{user.name}}</h2>
 
-        <ion-buttons right>
+        <ion-buttons right
+                     *ngIf="allowDelete">
             <button (click)="remove(user)" clear>
                 <ion-icon name="trash"></ion-icon>
             </button>

@@ -3,6 +3,7 @@ import {DoseAmigosUser} from "../dose-amigos-user/dose-amigos-user";
 import {NextDoseComponent} from "../next-dose/next-dose.component";
 import {LastDoseComponent} from "../last-dose/last-dose.component";
 import {DoseAmigosUserService} from "../dose-amigos-user-service/dose-amigos-user.service";
+import {Events} from "ionic-angular/index";
 
 /**
  * UserStatusCardComponent for rendering a user's status as a card.
@@ -23,30 +24,35 @@ export class UserStatusCardComponent {
     public user: DoseAmigosUser;
 
     constructor(
-        private doseAmigosUserService: DoseAmigosUserService
+        private doseAmigosUserService: DoseAmigosUserService,
+        private events: Events
     ) {
     }
 
     @Input()
     public onClickPage: Type;
 
-
-    remove(doseAmigoUser: DoseAmigosUser){
-        const amigoPromise = this.doseAmigosUserService.remove(doseAmigoUser).then(
-            
-        ).catch(
-            this.handleError
-        );
-    }
+    @Input()
+    public allowDelete: boolean;
 
     /**
-     * Handles any errors communicating with backend.
-     * @param error
-     * @returns {Promise<void>|Promise<T>}
+     * Deletes an amigo.
+     * @param doseAmigoUser to delete.
+     * @returns {Promise<TResult>}
      */
-    private handleError(error: any) {
-        console.error("An error occurred", error);
-        return Promise.reject(error.message || error);
-    }
+    public remove = (doseAmigoUser: DoseAmigosUser) => {
+        return this.doseAmigosUserService.remove(
+            doseAmigoUser
+        ).then(
+            (doseAmigoUser) => {
+                this.events.publish(
+                    "doseAmigoUser:deleted",
+                    doseAmigoUser as DoseAmigosUser
+                );
+
+                return doseAmigoUser;
+            }
+        );
+    };
 
 }

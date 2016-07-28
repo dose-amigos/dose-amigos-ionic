@@ -1,9 +1,8 @@
-import {Component, OnInit, Type} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {DoseAmigosToolbar} from "../../dose-amigos-toolbar/dose-amigos-toolbar.component";
 import {DoseAmigosUserService} from "../../dose-amigos-user-service/dose-amigos-user.service";
 import {DoseAmigosUser} from "../../dose-amigos-user/dose-amigos-user";
 import {UserStatusCardComponent} from "../../user-status-card/user-status-card.component";
-import {FeedPage} from "../feed/feed";
 import {AmigoRequestCreateComponent} from "../../amigo-request-create-component/amigo-request-create.component";
 import {LogonPanelComponent} from "../../logon-panel-component/logon-panel.component";
 import {Events, NavController} from "ionic-angular/index";
@@ -25,7 +24,7 @@ export class AmigosPage implements OnInit {
 
     public title: string = "Amigos";
     public doseAmigosUsers: Array<DoseAmigosUser> = [];
-    public userStatusClickPage: Type;
+    public allowUserDelete: boolean;
 
     constructor(
         private doseAmigosUserService: DoseAmigosUserService,
@@ -37,6 +36,14 @@ export class AmigosPage implements OnInit {
         /* Refresh page data when a new request is created. */
         events.subscribe(
             "amigoShareRequest:created",
+            () => {
+                this.loadUsers();
+            }
+        );
+
+        /* Refresh page data when a amigo is deleted. */
+        events.subscribe(
+            "doseAmigoUser:deleted",
             () => {
                 this.loadUsers();
             }
@@ -81,7 +88,7 @@ export class AmigosPage implements OnInit {
      */
     ngOnInit(): any {
 
-        this.userStatusClickPage = FeedPage;
+        this.allowUserDelete = true;
 
         return this.loadUsers();
     }
