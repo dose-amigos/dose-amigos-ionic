@@ -16,6 +16,7 @@ import "./rxjs-operators";
 import {AuthHttp, AuthConfig} from "./angular2-jwt";
 import {DoseSeriesService} from "./dose-series-service/dose-series.service";
 import {LoadingStatusService} from "./loading-status-service/loading-status.service";
+import {DoseNotificationService} from "./dose-notifications/dose-notifications";
 
 /**
  * DoseAmigosApp component for initializing app and routes.
@@ -46,7 +47,8 @@ import {LoadingStatusService} from "./loading-status-service/loading-status.serv
             DoseEventService,
             DoseSeriesService,
             DoseMedicationService,
-            LoadingStatusService
+            LoadingStatusService,
+            DoseNotificationService
         ]
     }
 )
@@ -61,7 +63,8 @@ export class DoseAmigosApp {
     constructor(
         private platform: Platform,
         private authHttp: AuthHttp,
-        private auth: AuthService
+        private auth: AuthService,
+        private doseNotificationService: DoseNotificationService
     ) {
         this.initializeApp();
 
@@ -86,6 +89,9 @@ export class DoseAmigosApp {
                 // schedule an initial token refresh for when the
                 // token expires
                 this.auth.startupTokenRefresh();
+
+                /* Get DoseEvents in an interval. */
+                this.doseNotificationService.startRecurringRefresh();
             }
         );
     }
