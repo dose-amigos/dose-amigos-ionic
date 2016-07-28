@@ -21,7 +21,8 @@ export class DoseSeriesSliderComponent {
 
     constructor(
         private doseSeriesService: DoseSeriesService,
-        private events: Events
+        private events: Events,
+        private newValue: string
     ) {
     }
 
@@ -37,8 +38,11 @@ export class DoseSeriesSliderComponent {
     }
 
     slidingEdit(slidingItem: ItemSliding) {
-        //redirct to the edit screen
-        this.doseSeriesService.edit(this.doseSeries).then(
+        // redirct to the edit screen
+
+        this.newValue = "FUCK";
+
+        this.doseSeriesService.edit(this.doseSeries, this.newValue).then(
 
             (doseSeries: DoseSeries) => {
                 this.events.publish(

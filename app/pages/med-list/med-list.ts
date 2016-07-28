@@ -46,6 +46,14 @@ export class MedListPage implements OnInit {
             }
 
         );
+        
+	events.subscribe(
+            "doseSeries:edited",
+            () => {
+                this.loadMedicationList();
+            }
+
+        );
 
     }
 

@@ -71,9 +71,34 @@ export class DoseSeriesService {
      * @returns {Promise<DoseSeries>}.
      */
     public edit(
-        doseSeries: DoseSeries
+        doseSeries: DoseSeries,
+        newName: string
     ): Promise<DoseSeries> {
-        return this.put(doseSeries);
+
+        doseSeries.med.name = newName;
+
+        const headers = new Headers(
+            {
+                "Content-Type": "application/json"
+            }
+        );
+
+        const options = new RequestOptions(
+            {
+                headers: headers
+            }
+        );
+
+        return this.http.put(
+            `${this.doseSeriesUrl}/${doseSeries.id}`,
+            JSON.stringify(doseSeries),
+            options
+        ).toPromise().then(
+            res => res.json()
+        ).catch(
+            this.handleError
+        );
+
     }
 
     /**
