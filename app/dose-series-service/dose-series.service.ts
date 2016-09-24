@@ -66,6 +66,42 @@ export class DoseSeriesService {
     }
 
     /**
+     *  Edits a DoseSeries
+     * @param id to lookup.
+     * @returns {Promise<DoseSeries>}.
+     */
+    public edit(
+        doseSeries: DoseSeries,
+        newName: string
+    ): Promise<DoseSeries> {
+
+        doseSeries.med.name = newName;
+
+        const headers = new Headers(
+            {
+                "Content-Type": "application/json"
+            }
+        );
+
+        const options = new RequestOptions(
+            {
+                headers: headers
+            }
+        );
+
+        return this.http.put(
+            `${this.doseSeriesUrl}/${doseSeries.id}`,
+            JSON.stringify(doseSeries),
+            options
+        ).toPromise().then(
+            res => res.json()
+        ).catch(
+            this.handleError
+        );
+
+    }
+
+    /**
      * Creates a new DoseSeries object.
      * @param doseSeries to save.
      * @returns {Promise<DoseSeries>}.

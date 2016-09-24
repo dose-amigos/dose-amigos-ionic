@@ -21,7 +21,8 @@ export class DoseSeriesSliderComponent {
 
     constructor(
         private doseSeriesService: DoseSeriesService,
-        private events: Events
+        private events: Events,
+        private newValue: string
     ) {
     }
 
@@ -30,6 +31,22 @@ export class DoseSeriesSliderComponent {
             (doseSeries: DoseSeries) => {
                 this.events.publish(
                     "doseSeries:deleted",
+                    doseSeries as DoseSeries
+                );
+            }
+        );
+    }
+
+    slidingEdit(slidingItem: ItemSliding) {
+        // redirct to the edit screen
+
+        this.newValue = "FUCK";
+
+        this.doseSeriesService.edit(this.doseSeries, this.newValue).then(
+
+            (doseSeries: DoseSeries) => {
+                this.events.publish(
+                    "doseSeries:edited",
                     doseSeries as DoseSeries
                 );
             }
